@@ -32,10 +32,14 @@ const FEATURES = [
 ];
 
 const FORMATS = [
-  { label: "Drive-Thru's", sqft: "1200 - 2000 SQFT", img: "/images/franchising/format-drive-thru.jpg" },
-  { label: "Traditional", sqft: "1500 - 2500 SQFT", img: "/images/franchising/format-traditional.jpg" },
-  { label: "Travel Plazas", sqft: "800 - 1200 SQFT", img: "/images/franchising/format-travel.jpg" },
-  { label: "Convenience Stores", sqft: "800 - 1500 SQFT", img: "/images/franchising/format-convenience.jpg" },
+  { img: "/images/franchising/storefront-exterior-night-01.jpg" },
+  { img: "/images/franchising/storefront-drive-thru-menu.jpg" },
+  { img: "/images/franchising/storefront-kiosk-mall.jpg" },
+  { img: "/images/franchising/storefront-dining-room-night.jpg" },
+  { img: "/images/franchising/storefront-travel-plaza.jpg" },
+  { img: "/images/franchising/storefront-exterior-night-02.jpg" },
+  { img: "/images/franchising/storefront-mall-entrance.jpg" },
+  { img: "/images/franchising/storefront-airport-terminal.jpg" },
 ];
 
 export default function FranchisingHero() {
@@ -144,7 +148,7 @@ export default function FranchisingHero() {
               >
                 <Image
                   src={FORMATS[current].img}
-                  alt={`Americas Food Court ${FORMATS[current].label} exterior`}
+                  alt="Americas Food Court storefront"
                   fill
                   priority={current === 0}
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -154,35 +158,32 @@ export default function FranchisingHero() {
             </AnimatePresence>
 
             <span className="bg-brand-navy absolute top-0 left-0 rounded-br-2xl px-6 py-3 text-sm font-semibold text-white">
-              {FORMATS[current].label.replace(/'s$/, "")}
+              Americas Food Court
             </span>
 
             <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-3 shadow-xl backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-4">
               <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {FORMATS.map((format, i) => (
                   <button
-                    key={format.label}
+                    key={format.img}
                     type="button"
                     onClick={() => setCurrent(i)}
+                    aria-label={`Go to slide ${i + 1}`}
                     className="group text-center"
                   >
                     <div
-                      className={`relative mb-1 h-12 w-full overflow-hidden rounded-lg ring-2 transition-colors sm:h-16 ${
+                      className={`relative h-12 w-full overflow-hidden rounded-lg ring-2 transition-colors sm:h-16 ${
                         i === current ? "ring-brand-red" : "ring-transparent"
                       }`}
                     >
                       <Image
                         src={format.img}
-                        alt={format.label}
+                        alt=""
                         fill
                         sizes="12vw"
                         className="object-cover"
                       />
                     </div>
-                    <p className="text-brand-navy text-[11px] leading-tight font-semibold sm:text-xs">
-                      {format.label}
-                    </p>
-                    <p className="text-[9px] leading-tight text-gray-500 sm:text-[11px]">{format.sqft}</p>
                   </button>
                 ))}
               </div>

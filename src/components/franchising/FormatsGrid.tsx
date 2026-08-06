@@ -31,7 +31,7 @@ export default function FormatsGrid() {
         portfolio of flexible store formats.
       </p>
 
-      <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
         {FORMATS.map((format, index) => (
           <motion.div
             key={format.label}
