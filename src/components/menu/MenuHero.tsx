@@ -12,12 +12,20 @@ export default function MenuHero({
   return (
     <section className="relative flex min-h-[420px] items-center overflow-hidden pt-40 pb-12 sm:min-h-[480px] sm:pt-44">
       <Image
+        src="/images/menu/hero-food-mobile.jpg"
+        alt="Burgers, hot dog and milkshake from Americas Food Court brands"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-top sm:hidden"
+      />
+      <Image
         src="/images/menu/hero-food.jpg"
         alt="Burgers, hot dog and milkshake from Americas Food Court brands"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[85%_center] sm:object-[75%_center] lg:object-[65%_center]"
+        className="hidden object-cover object-[75%_center] sm:block lg:object-[65%_center]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/10 to-transparent sm:hidden" />
 

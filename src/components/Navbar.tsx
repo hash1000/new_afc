@@ -25,8 +25,8 @@ export default function Navbar() {
           <Image
             src="/images/home/afc-logo.svg"
             alt="Americas Food Court"
-            width={62}
-            height={42}
+            width={120}
+            height={85}
             priority
           />
         </Link>

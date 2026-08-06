@@ -7,7 +7,7 @@ import BrandGrid from "./BrandGrid";
 
 export default function MenuContent() {
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("burgers");
+  const [activeCategory, setActiveCategory] = useState("all");
 
   return (
     <>

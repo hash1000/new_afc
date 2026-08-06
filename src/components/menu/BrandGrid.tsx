@@ -15,7 +15,7 @@ export default function BrandGrid({
   const filtered = brands.filter((brand) => {
     const query = search.trim().toLowerCase();
     const matchesSearch = query === "" || brand.name.toLowerCase().includes(query);
-    const matchesCategory = brand.category.includes(activeCategory);
+    const matchesCategory = activeCategory === "all" || brand.category.includes(activeCategory);
     return matchesSearch && matchesCategory;
   });
 
@@ -50,17 +50,17 @@ export default function BrandGrid({
                     className="object-cover"
                   />
                 </div>
-                <div className="bg-cream flex items-center justify-between gap-2 p-3">
+                <div className="bg-cream flex flex-col items-start gap-2 p-3 sm:flex-row sm:items-center sm:justify-between">
                   <Image
                     src={brand.logo}
                     alt={brand.name}
                     width={brand.logoWidth}
                     height={brand.logoHeight}
-                    className="h-8 w-auto object-contain"
+                    className="h-7 w-auto max-w-full object-contain sm:h-8"
                   />
                   <Link
                     href={brand.orderUrl}
-                    className="bg-brand-red flex shrink-0 items-center rounded-lg px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-red/90"
+                    className="bg-brand-red flex w-full shrink-0 items-center justify-center rounded-lg px-3 py-2 text-xs font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-red/90 sm:w-auto"
                   >
                     Order Now
                   </Link>

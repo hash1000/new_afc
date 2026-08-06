@@ -4,12 +4,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const BRANDS = [
-  { name: "MrBeast Burger", src: "/images/home/logo-mrbeast.png", w: 174, h: 174 },
-  { name: "One More Slice", src: "/images/home/logo-oneslice.png", w: 166, h: 166 },
-  { name: "Sweet Waves Kitchen", src: "/images/home/logo-sweetwaves.png", w: 184, h: 184 },
-  { name: "California Pizza Kitchen", src: "/images/home/logo-cpk.png", w: 228, h: 80 },
-  { name: "The Cheesecake Factory Bakery", src: "/images/home/logo-cheesecake.png", w: 182, h: 110 },
-  { name: "Chickaroo Chicken", src: "/images/home/logo-chickaroo.png", w: 250, h: 78 },
+  { name: "MrBeast Burger", src: "/images/home/logo-mrbeast.webp", w: 250, h: 250 },
+  { name: "One More Slice", src: "/images/home/logo-oneslice.webp", w: 250, h: 250 },
+  { name: "Sweet Waves Kitchen", src: "/images/home/logo-sweetwaves.webp", w: 250, h: 250 },
+  { name: "California Pizza Kitchen", src: "/images/home/logo-cpk.webp", w: 250, h: 250 },
+  { name: "The Cheesecake Factory Bakery", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
+  { name: "Chickaroo Chicken", src: "/images/home/logo-chickaroo.webp", w: 250, h: 250 },
+  { name: "Chick Chick Eat", src: "/images/home/logo-chickchickeat.webp", w: 250, h: 250 },
+  { name: "Dog It Up", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
+  { name: "Empanadas United", src: "/images/home/logo-empanadas.webp", w: 250, h: 250 },
+  { name: "Man vs Fries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
+  { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
+  { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },
 ];
 
 const MOBILE_VISIBLE = 2;
@@ -48,7 +54,7 @@ export default function BrandCarousel() {
   const itemWidthPercent = 100 / visible;
 
   return (
-    <section className="container-page relative z-10 mx-auto -mt-[38px]">
+    <section className="container-page relative z-10 mx-auto">
       <div className="bg-cream flex items-center gap-4 rounded-[36px] px-4 py-6 sm:gap-6 sm:px-8">
         <button
           type="button"
@@ -77,7 +83,7 @@ export default function BrandCarousel() {
                   alt={brand.name}
                   width={brand.w}
                   height={brand.h}
-                  className="h-8 w-auto object-contain grayscale transition-all duration-300 hover:grayscale-0 sm:h-10 lg:h-14"
+                  className="h-12 w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-16 lg:h-20"
                 />
               </div>
             ))}

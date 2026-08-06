@@ -5,18 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ZigzagDivider from "./ZigzagDivider";
+import BrandCarousel from "./BrandCarousel";
 
 const SLIDES = [
   {
     bg: "/images/hero/slide-1-bg.jpg",
+    bgMobile: "/images/hero/slide-1-bg-mobile.jpg",
     alt: "Burgers, hot dog, milkshake and pizza slice from Americas Food Court brands on a warm restaurant table",
   },
   {
     bg: "/images/hero/slide-2-bg.jpg",
+    bgMobile: "/images/hero/slide-2-bg-mobile.jpg",
     alt: "Assorted specialty pizzas from Americas Food Court brands",
   },
   {
     bg: "/images/hero/slide-3-bg.jpg",
+    bgMobile: "/images/hero/slide-3-bg-mobile.jpg",
     alt: "Strawberry cheesecake slice from Americas Food Court brands",
   },
 ];
@@ -39,7 +43,7 @@ export default function HeroSlider() {
     setCurrent((prevIndex) => (prevIndex - 1 + SLIDES.length) % SLIDES.length);
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pt-40 pb-16 sm:pt-44">
+    <section className="relative flex min-h-screen flex-col overflow-hidden pt-40 pb-16 sm:pt-44">
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -51,19 +55,27 @@ export default function HeroSlider() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <Image
+              src={SLIDES[current].bgMobile}
+              alt={SLIDES[current].alt}
+              fill
+              priority={current === 0}
+              sizes="100vw"
+              className="object-cover object-top sm:hidden"
+            />
+            <Image
               src={SLIDES[current].bg}
               alt={SLIDES[current].alt}
               fill
               priority={current === 0}
               sizes="100vw"
-              className="object-cover object-[25%_center] sm:object-[45%_center] lg:object-[65%_center]"
+              className="hidden object-cover object-[45%_center] sm:block lg:object-[65%_center]"
             />
           </motion.div>
         </AnimatePresence>
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-white/25 via-white/5 to-transparent sm:hidden" />
 
-      <div className="container-page relative mx-auto">
+      <div className="container-page relative mx-auto flex flex-1 items-center">
         <div className="max-w-[610px]">
           <h1 className="font-display text-[13vw] leading-[0.95] uppercase sm:text-[64px] sm:leading-[0.95] lg:text-[80px]">
             <span className="text-brand-navy block">One Stop.</span>
@@ -144,6 +156,10 @@ export default function HeroSlider() {
             }`}
           />
         ))}
+      </div>
+
+      <div className="relative z-10 mt-auto pt-16">
+        <BrandCarousel />
       </div>
     </section>
   );
