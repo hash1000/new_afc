@@ -7,6 +7,7 @@
   --color-brand-yellow: #fac819;
   --color-brand-blue: #394a82;
   --color-brand-coral: #ff5757;
+  --color-cream: #fff8ea;
 
   --font-display: var(--font-paytone-one);
   --font-sans: var(--font-inter);
@@ -16,4 +17,16 @@ body {
   font-family: var(--font-sans);
   background: #ffffff;
   color: var(--color-brand-navy);
+}
+
+.container-page {
+  max-width: 1440px;
+  padding-inline: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
 }
