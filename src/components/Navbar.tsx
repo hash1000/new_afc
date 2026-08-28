@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Menu", href: "/menu" },
   { label: "Franchising", href: "/franchising" },
   { label: "About us", href: "/about" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
