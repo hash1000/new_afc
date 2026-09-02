@@ -83,7 +83,7 @@ export default function BrandCarousel() {
                   alt={brand.name}
                   width={brand.w}
                   height={brand.h}
-                  className="h-12 w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-16 lg:h-20"
+                  className=" w-auto object-contain transition-transform duration-300 hover:scale-105"
                 />
               </div>
             ))}

@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 ">
-      <div className="bg-brand-navy h-8" />
+      {/* <div className="bg-brand-navy h-8" /> */}
 
       <nav className="container-page flex items-center justify-between py-4 mx-auto">
         <Link href="/" className="shrink-0">
