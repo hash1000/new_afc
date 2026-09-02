@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { categories } from "@/lib/brands";
 
@@ -36,19 +37,30 @@ export default function CategoryTabs({
         {categories.map((category) => {
           const isActive = category.id === activeCategory;
           return (
-            <button
+            <motion.button
               key={category.id}
               type="button"
               onClick={() => onCategoryChange(category.id)}
               aria-pressed={isActive}
-              className={`flex shrink-0 items-center gap-1.5 rounded-xl bg-[#efefef] py-2 pr-3 pl-2.5 text-xs whitespace-nowrap text-black transition-colors sm:gap-2 sm:py-2.5 sm:pr-4 sm:pl-3 sm:text-sm ${
+              whileTap={{ scale: 0.95 }}
+              animate={{ scale: isActive ? 1.04 : 1 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className={`relative flex shrink-0 items-center gap-1.5 rounded-xl bg-[#efefef] py-2 pr-3 pl-2.5 text-xs whitespace-nowrap text-black sm:gap-2 sm:py-2.5 sm:pr-4 sm:pl-3 sm:text-sm ${
                 isActive ? "border-brand-red border" : "border border-transparent"
               }`}
             >
               <span aria-hidden="true">{category.emoji}</span>
               <span>{category.label}</span>
               {isActive && (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <motion.svg
+                  layoutId="category-check"
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
                   <circle cx="12" cy="12" r="12" fill="white" />
                   <path
                     d="M7 12.5l3 3 7-7"
@@ -57,9 +69,9 @@ export default function CategoryTabs({
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                </svg>
+                </motion.svg>
               )}
-            </button>
+            </motion.button>
           );
         })}
       </div>

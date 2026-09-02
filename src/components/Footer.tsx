@@ -21,31 +21,33 @@ const BOTTOM_LINKS = [
 export default function Footer() {
   return (
     <footer className="bg-brand-navy-dark text-white">
-      <div className="container-page py-14">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
-          <div className="flex flex-col gap-4">
-            <div className="flex h-[69px] w-[95px] items-center justify-center rounded-xl bg-white">
-              <Image
-                src="/images/home/afc-logo.svg"
-                alt="Americas Food Court"
-                width={62}
-                height={42}
-              />
+      <div className="container-page py-14 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="flex flex-col gap-5 lg:col-span-2 lg:max-w-md">
+            <div className="flex items-center gap-3">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl shadow-sm">
+                <Image
+                  src="/images/home/afc-logo.svg"
+                  alt="Americas Food Court"
+                  width={90}
+                  height={60}
+                />
+              </div>
             </div>
-            <p className="text-sm text-white/70">All the foods you love.</p>
-            <Image
-              src="/images/home/afc-logo.svg"
-              alt="Americas Food Court"
-              width={84}
-              height={57}
-            />
+
+            <p className="text-sm leading-relaxed text-white/70">
+              All the foods you love.
+              <br />
+              One destination.
+            </p>
+
             <div className="flex gap-3">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 sm:h-9 sm:w-9 transition-colors hover:bg-white/20"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 hover:text-brand-yellow sm:h-9 sm:w-9"
               >
                 <svg
                   width="16"
@@ -78,7 +80,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 sm:h-9 sm:w-9 transition-colors hover:bg-white/20"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 hover:text-brand-yellow sm:h-9 sm:w-9"
               >
                 <svg
                   width="16"

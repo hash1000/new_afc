@@ -53,7 +53,7 @@ export default function FranchisingHero() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-white pt-40 pb-16 sm:pt-44 sm:pb-24">
+    <section className="overflow-hidden bg-white py-16 sm:py-24">
       <div className="container-page mx-auto grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-8">
         <div>
           <h1 className="font-display text-4xl leading-[1.05] uppercase sm:text-5xl lg:text-6xl">

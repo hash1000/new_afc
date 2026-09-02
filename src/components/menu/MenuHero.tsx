@@ -1,6 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function MenuHero({
   search,
@@ -10,14 +16,14 @@ export default function MenuHero({
   onSearchChange: (value: string) => void;
 }) {
   return (
-    <section className="relative flex min-h-[420px] items-center overflow-hidden pt-40 pb-12 sm:min-h-[480px] sm:pt-44">
+    <section className="relative flex min-h-[420px] lg:w-[1440px] rounded-xl mx-auto justify-center items-center overflow-hidden py-12 sm:min-h-140">
       <Image
         src="/images/menu/hero-food-mobile.jpg"
         alt="Burgers, hot dog and milkshake from Americas Food Court brands"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-top sm:hidden"
+        className="object-cover object-center sm:hidden"
       />
       <Image
         src="/images/menu/hero-food.jpg"
@@ -25,37 +31,44 @@ export default function MenuHero({
         fill
         priority
         sizes="100vw"
-        className="hidden object-cover object-[75%_center] sm:block lg:object-[65%_center]"
+        className="hidden object-cover object-[75%_center] sm:block lg:object-[100%_center]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/10 to-transparent sm:hidden" />
 
       <div className="container-page relative">
-        <div className="max-w-[660px]">
-          <h1 className="font-display text-[12vw] leading-[0.95] text-white uppercase sm:text-6xl">
-            What are you
-          </h1>
-          <h2 className="font-display text-brand-yellow mt-1 text-[7vw] leading-[0.95] tracking-wide uppercase sm:text-4xl">
-            in mood for today ?
-          </h2>
-          <svg
-            viewBox="0 0 447 38"
-            className="text-brand-yellow mt-3 h-4 w-56 sm:w-72"
-            fill="none"
-            aria-hidden="true"
+        <motion.div
+          className="flex flex-col  gap-6 "
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.12 }}
+        >
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <path
-              d="M2 30C60 -4 120 34 180 12S320 -4 445 20"
-              stroke="currentColor"
-              strokeWidth="5"
-              strokeLinecap="round"
+            <Image
+              src="/images/menu/food-order-hero.svg"
+              alt="What are you in mood for today?"
+              width={2170}
+              height={630}
+              priority
+              className="h-auto w-[92vw] max-w-175 sm:w-150 lg:w-175"
             />
-          </svg>
+          </motion.div>
 
-          <p className="font-display mt-6 text-lg text-white sm:text-xl">
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="font-display mt-14 text-lg text-white sm:text-xl"
+          >
             Your Favorites, Delivered Fast
-          </p>
+          </motion.p>
 
-          <div className="relative mt-4 max-w-xl">
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative max-w-xl"
+          >
             <input
               type="text"
               value={search}
@@ -73,8 +86,8 @@ export default function MenuHero({
                 <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

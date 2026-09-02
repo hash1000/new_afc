@@ -12,7 +12,7 @@ export default function TermsPage() {
   return (
     <>
       <Navbar />
-      <main className="container-page mx-auto flex flex-1 flex-col pt-40 pb-16 sm:pt-44 sm:pb-24">
+      <main className="container-page mx-auto flex flex-1 flex-col py-16 sm:py-24">
         <div className="mx-auto w-full max-w-3xl">
           <h1 className="text-brand-navy text-3xl font-bold sm:text-4xl">
             Website Terms &amp; Conditions

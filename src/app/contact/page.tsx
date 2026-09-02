@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="container-page mx-auto flex flex-1 flex-col justify-center pt-40 pb-16 sm:pt-44 sm:pb-24">
+      <main className="container-page mx-auto flex flex-1 flex-col justify-center py-16 sm:py-24">
         <ContactCard />
       </main>
       <Footer />

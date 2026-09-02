@@ -4,6 +4,7 @@ import { useState } from "react";
 import MenuHero from "./MenuHero";
 import CategoryTabs from "./CategoryTabs";
 import BrandGrid from "./BrandGrid";
+import TrendingSection from "./TrendingSection";
 
 export default function MenuContent() {
   const [search, setSearch] = useState("");
@@ -14,6 +15,7 @@ export default function MenuContent() {
       <MenuHero search={search} onSearchChange={setSearch} />
       <div className="mt-8">
         <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+        <TrendingSection />
         <BrandGrid search={search} activeCategory={activeCategory} />
       </div>
     </>

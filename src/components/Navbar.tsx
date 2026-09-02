@@ -3,41 +3,48 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FiMenu, FiShoppingCart, FiX } from "react-icons/fi";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Menu", href: "/menu" },
-  { label: "Franchising", href: "/franchising" },
+  { label: "Order Food", href: "/menu" },
   { label: "About us", href: "/about" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
+  { label: "Partner with us", href: "/franchising" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  return (
-    <header className="absolute inset-x-0 top-0">
-      {/* <div className="bg-brand-navy h-8" /> */}
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-      <nav className="container-page flex items-center justify-between py-4 mx-auto">
-        <Link href="/" className="shrink-0">
+  return (
+    <header className="inset-x-0 top-0 z-50 bg-white ">
+      <nav className="container-page mx-auto flex items-center justify-between gap-4 py-4 sm:py-5">
+        <Link href="/" className="relative z-50 shrink-0">
           <Image
             src="/images/home/afc-logo.svg"
             alt="Americas Food Court"
-            width={120}
-            height={85}
+            width={110}
+            height={78}
             priority
+            className="h-14 w-auto sm:h-16 lg:h-19.5"
           />
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-2xl bg-white/50 px-4 py-3 backdrop-blur-md lg:flex">
+        <div className="hidden items-center gap-1 xl:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-brand-navy rounded-xl px-4 py-2 text-sm font-semibold transition-colors hover:bg-white/60"
+              className="text-brand-navy rounded-xl px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors hover:bg-brand-navy/5"
             >
               {link.label}
             </Link>
@@ -45,43 +52,35 @@ export default function Navbar() {
         </div>
 
         <Link
-          href="/menu"
-          className="bg-brand-red hidden rounded-2xl px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90 lg:inline-flex"
+          href="/cart"
+          className="bg-brand-red hidden shrink-0 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90 xl:inline-flex"
         >
-          Explore Menu
+          <FiShoppingCart className="h-4 w-4" aria-hidden="true" />
+          View Cart
+          <span aria-hidden="true">→</span>
         </Link>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/50 backdrop-blur-md lg:hidden"
+          className="text-brand-navy relative z-50 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-navy/5 xl:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
         >
-          <span className="relative block h-4 w-5">
-            <span
-              className={`bg-brand-navy absolute inset-x-0 top-0 h-0.5 rounded transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`}
-            />
-            <span
-              className={`bg-brand-navy absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 rounded transition-opacity ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`bg-brand-navy absolute inset-x-0 bottom-0 h-0.5 rounded transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
-            />
-          </span>
+          {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
         </button>
       </nav>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="mx-6 overflow-hidden rounded-2xl bg-white/95 shadow-lg lg:hidden"
+            className="container-page mx-auto xl:hidden"
           >
-            <div className="flex flex-col gap-1 p-4">
+            <div className="mt-2 flex flex-col gap-1 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur-md">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -93,11 +92,13 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/menu"
+                href="/cart"
                 onClick={() => setOpen(false)}
-                className="bg-brand-red mt-2 flex items-center justify-center rounded-2xl px-7 py-3.5 text-center text-sm font-semibold text-white"
+                className="bg-brand-red mt-2 flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-center text-sm font-semibold text-white"
               >
-                Explore Menu
+                <FiShoppingCart className="h-4 w-4" aria-hidden="true" />
+                View Cart
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </motion.div>

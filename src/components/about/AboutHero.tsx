@@ -11,7 +11,7 @@ const fadeUp = {
 
 export default function AboutHero() {
   return (
-    <section className="container-page mx-auto flex min-h-[80vh] flex-col items-center justify-center gap-10 pt-40 pb-16 sm:pt-44 lg:flex-row lg:gap-12">
+    <section className="container-page mx-auto flex min-h-[80vh] flex-col items-center justify-center gap-10 py-16 lg:flex-row lg:gap-12">
       <div className="w-full lg:basis-[35%]">
         <h1 className="font-display text-4xl leading-tight sm:text-5xl">
           <motion.span

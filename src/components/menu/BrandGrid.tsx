@@ -28,7 +28,7 @@ export default function BrandGrid({
           <motion.div
             key="grid"
             layout
-            className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5"
+            className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
           >
             {filtered.map((brand) => (
               <motion.div
@@ -39,32 +39,33 @@ export default function BrandGrid({
                 exit={{ opacity: 0, scale: 0.9 }}
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
-                className="overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg"
+                className="relative aspect-380/195 w-full overflow-hidden rounded-2xl border border-black/5 shadow-sm transition-shadow hover:shadow-lg"
               >
-                <div className="relative aspect-4/3 w-full">
-                  <Image
-                    src={brand.foodImage}
-                    alt={brand.name}
-                    fill
-                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="bg-cream flex flex-col items-start gap-2 p-3 sm:flex-row sm:items-center sm:justify-between">
+                <Image
+                  src={brand.foodImage}
+                  alt={brand.name}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute top-12 left-4 w-[55%] max-w-45">
                   <Image
                     src={brand.logo}
                     alt={brand.name}
                     width={brand.logoWidth}
                     height={brand.logoHeight}
-                    className="h-7 w-auto max-w-full object-contain sm:h-8"
+                    className="h-auto w-full object-contain drop-shadow-sm"
                   />
-                  <Link
-                    href={brand.orderUrl}
-                    className="bg-brand-red flex w-full shrink-0 items-center justify-center rounded-lg px-3 py-2 text-xs font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-red/90 sm:w-auto"
-                  >
-                    Order Now
-                  </Link>
                 </div>
+                <Link
+                  href={brand.orderUrl}
+                  className="bg-brand-red absolute bottom-4 left-4 inline-flex shrink-0 items-center gap-1 rounded-lg px-3 py-2 text-xs font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-red/90"
+                >
+                  Explore Menu
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

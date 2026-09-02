@@ -10,7 +10,7 @@ const fadeUp = {
 
 export default function CareersHero() {
   return (
-    <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden pt-32 pb-16 sm:pt-40">
+    <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden py-16">
       <Image
         src="/images/franchising/storefront-dining-room-night.jpg"
         alt="Team members working together at an Americas Food Court location"
