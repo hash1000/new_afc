@@ -18,7 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 ">
+    <header className="absolute inset-x-0 top-0">
       {/* <div className="bg-brand-navy h-8" /> */}
 
       <nav className="container-page flex items-center justify-between py-4 mx-auto">

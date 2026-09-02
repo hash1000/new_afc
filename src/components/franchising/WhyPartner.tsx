@@ -40,10 +40,8 @@ export default function WhyPartner() {
         <span className="text-brand-blue">Why Partner</span> With America&apos;s Food Court
       </h2>
 
-      {/* Full-width navy band */}
       <div className="bg-brand-navy mt-14 lg:mt-24">
         <div className="container-page relative mx-auto py-10 lg:py-14">
-          {/* Cards — right side pe photo ke liye space chhoda hai */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 ">
             {BENEFITS.map((benefit) => (
               <div key={benefit.title} className="bg-brand-blue rounded-2xl p-6">
@@ -53,17 +51,6 @@ export default function WhyPartner() {
               </div>
             ))}
           </div>
-
-          {/* Photo — band se upar aur neeche overflow karti hai (lg+) */}
-          {/* <div className="relative mt-8 h-80 w-full overflow-hidden rounded-2xl lg:absolute lg:top-1/2 lg:right-0 lg:mt-0 lg:h-[426px] lg:w-[391px] lg:-translate-y-1/2">
-            <Image
-              src="/images/franchising/staff-photo.jpg"
-              alt="Two Americas Food Court team members in uniform smiling"
-              fill
-              sizes="(min-width: 1024px) 391px, 100vw"
-              className="object-cover"
-            />
-          </div> */}
         </div>
       </div>
     </motion.section>

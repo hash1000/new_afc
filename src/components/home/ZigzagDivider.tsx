@@ -13,7 +13,7 @@ export default function ZigzagDivider() {
         return (
           <Image
             key={i}
-            src={isUp ? "/images/hero/upword-arrow.svg" : "/images/hero/down-arrow.svg"}
+            src={isUp ? "/images/home/upword-arrow.svg" : "/images/home/down-arrow.svg"}
             alt=""
             width={9}
             height={8}
