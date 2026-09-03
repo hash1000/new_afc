@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
@@ -24,7 +25,7 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
+  console.log(pathname);
   return (
     <header className="inset-x-0 top-0 z-50 bg-white ">
       <nav className="container-page mx-auto flex items-center justify-between gap-4 py-4 sm:py-5">
@@ -40,15 +41,20 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-1 xl:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-brand-navy rounded-xl px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors hover:bg-brand-navy/5"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-brand-navy  px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors ${
+                  isActive ? "border-b-2 border-brand-red" : "hover:bg-brand-navy/5 rounded-xl"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         <Link

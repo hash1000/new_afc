@@ -16,7 +16,7 @@ export default function FoodMenuHero({
   onSearchChange: (value: string) => void;
 }) {
   return (
-    <section className="relative flex min-h-[420px] lg:container-page rounded-xl mx-auto justify-center items-center overflow-hidden py-12 sm:min-h-140">
+    <section className="relative flex min-h-[420px] lg:w-[1440px] rounded-xl mx-auto justify-center items-center overflow-hidden py-12 sm:min-h-140">
       <Image
         src="/images/menu/hero-food-mobile.jpg"
         alt="Burgers, hot dog and milkshake from Americas Food Court brands"

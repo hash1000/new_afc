@@ -7,6 +7,12 @@ export interface Brand {
   foodImage: string;
   category: string[];
   orderUrl: string;
+  /** Full-bleed banner image for the brand menu page hero, replaces the default logo+foodImage layout when set. */
+  menuBanner?: string;
+  /** Cream-card hero variant: logo top-left over a plated food cutout bottom-right, used instead of menuBanner. */
+  menuHeroImage?: string;
+  /** Hex color for menu item titles on the brand's menu page. Defaults to the site red accent. */
+  menuAccentColor?: string;
 }
 
 export const brands: Brand[] = [
@@ -19,6 +25,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/mrbeast.jpg",
     category: ["burgers"],
     orderUrl: "/food-menu/mrbeast",
+    menuBanner: "/images/menu/mr-beast/mr-beast-header.jpg",
   },
   {
     id: "cpk",
@@ -29,6 +36,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/california.jpg",
     category: ["pizza"],
     orderUrl: "/food-menu/cpk",
+    menuBanner: "/images/menu/california-pizza/california-pizza-header.jpg",
   },
   {
     id: "cheesecake",
@@ -39,6 +47,8 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/cheescake.jpg",
     category: ["desserts"],
     orderUrl: "/food-menu/cheesecake",
+    menuHeroImage: "/images/menu/chees-cake/cheesecake-img.jpg",
+    menuAccentColor: "#aa903d",
   },
   {
     id: "chickchick",
@@ -59,6 +69,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/one-more-slice.jpg",
     category: ["pizza"],
     orderUrl: "/food-menu/oneslice",
+    menuBanner: "/images/menu/one-more-slice/herder.jpg",
   },
   {
     id: "dogitup",
@@ -69,6 +80,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/dog-it-up.jpg",
     category: ["hot-dogs"],
     orderUrl: "/food-menu/dogitup",
+    menuBanner: "/images/menu/dog-it-up/dog-it-up-header.jpg",
   },
   {
     id: "empanadas",
@@ -89,6 +101,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/man-vs-fries.jpg",
     category: ["burgers"],
     orderUrl: "/food-menu/manvsfries",
+    menuBanner: "/images/menu/menvsfries/manvsfries-header.jpg",
   },
   {
     id: "chickaroo",
@@ -119,6 +132,7 @@ export interface Category {
 }
 
 export const categories: Category[] = [
+  { id: "all", label: "All", emoji: "" },
   { id: "burgers", label: "Burgers", emoji: "🍔" },
   { id: "pizza", label: "Pizza", emoji: "🍕" },
   { id: "chicken-sandwiches", label: "Chicken Sandwiches", emoji: "🥪" },

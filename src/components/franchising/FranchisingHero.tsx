@@ -31,12 +31,12 @@ const FEATURES = [
   },
 ];
 
-const FORMATS = [
+const FORMATS: { img: string; position?: string }[] = [
   { img: "/images/franchising/storefront-exterior-night-01.jpg" },
   { img: "/images/franchising/storefront-drive-thru-menu.jpg" },
   { img: "/images/franchising/storefront-kiosk-mall.jpg" },
   { img: "/images/franchising/storefront-dining-room-night.jpg" },
-  { img: "/images/franchising/storefront-travel-plaza.jpg" },
+  { img: "/images/franchising/storefront-travel-plaza.jpg", position: "object-top" },
   { img: "/images/franchising/storefront-exterior-night-02.jpg" },
   { img: "/images/franchising/storefront-mall-entrance.jpg" },
   { img: "/images/franchising/storefront-airport-terminal.jpg" },
@@ -136,7 +136,7 @@ export default function FranchisingHero() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
           className="relative overflow-hidden rounded-2xl border border-gray-200 shadow-lg"
         >
-          <div className="relative aspect-[4/3] w-full sm:aspect-[16/11]">
+          <div className="relative aspect-video w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -152,7 +152,7 @@ export default function FranchisingHero() {
                   fill
                   priority={current === 0}
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+                  className={`object-cover ${FORMATS[current].position ?? "object-center"}`}
                 />
               </motion.div>
             </AnimatePresence>
@@ -161,8 +161,8 @@ export default function FranchisingHero() {
               Americas Food Court
             </span>
 
-            <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-3 shadow-xl backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-4">
-              <div className="grid grid-cols-4 gap-2 sm:gap-3">
+            <div className="absolute inset-x-3 bottom-3 rounded-xl bg-white/95 p-2.5 shadow-xl backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-4">
+              <div className="grid grid-cols-8 gap-1 sm:gap-3">
                 {FORMATS.map((format, i) => (
                   <button
                     key={format.img}
@@ -172,7 +172,7 @@ export default function FranchisingHero() {
                     className="group text-center"
                   >
                     <div
-                      className={`relative h-12 w-full overflow-hidden rounded-lg ring-2 transition-colors sm:h-16 ${
+                      className={`relative aspect-4/3 w-full overflow-hidden rounded-md ring-2 transition-colors sm:rounded-lg ${
                         i === current ? "ring-brand-red" : "ring-transparent"
                       }`}
                     >
@@ -180,8 +180,8 @@ export default function FranchisingHero() {
                         src={format.img}
                         alt=""
                         fill
-                        sizes="12vw"
-                        className="object-cover"
+                        sizes="(min-width: 640px) 6vw, 12vw"
+                        className={`object-cover ${format.position ?? "object-center"}`}
                       />
                     </div>
                   </button>

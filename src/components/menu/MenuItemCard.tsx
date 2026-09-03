@@ -7,28 +7,32 @@ import type { MenuItem } from "@/lib/menu-items";
 export default function MenuItemCard({
   item,
   image,
+  accentColor,
 }: {
   item: MenuItem;
   image: string;
+  accentColor?: string;
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const showMeta = item.price !== undefined || item.rating !== undefined;
+
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm">
-      <div className="relative aspect-square w-full">
+    <div className="group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-cream/60 shadow-sm transition-shadow duration-200 hover:shadow-md">
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-white p-3 sm:p-4">
         <Image
-          src={image}
+          src={item.image ?? image}
           alt={item.name}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className="object-cover"
+          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
         />
         <button
           type="button"
           onClick={() => setIsFavorite((prev) => !prev)}
           aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
           aria-pressed={isFavorite}
-          className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 shadow-sm transition-colors hover:cursor-pointer"
+          className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 shadow-sm transition-colors hover:cursor-pointer hover:bg-white"
         >
           <svg
             width="15"
@@ -48,24 +52,58 @@ export default function MenuItemCard({
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
-        <h3 className="text-brand-navy text-xs font-bold tracking-wide uppercase sm:text-sm">
+        <h3
+          className={`text-xs font-bold tracking-wide uppercase sm:text-sm ${accentColor ? "" : "text-brand-red"}`}
+          style={accentColor ? { color: accentColor } : undefined}
+        >
           {item.name}
         </h3>
-        <p className="line-clamp-3 flex-1 text-[11px] text-black/60 sm:text-xs">
-          {item.description}
-        </p>
+        <div className="flex items-start justify-between gap-2">
+          <p className="line-clamp-3 text-[11px] text-black/60 sm:text-xs">
+            {item.description}
+          </p>
+          {item.sizeLabel && (
+            <span className="bg-brand-red shrink-0 rounded-md px-1.5 py-0.5 text-[9px] font-semibold whitespace-nowrap text-white sm:text-[10px]">
+              {item.sizeLabel}
+            </span>
+          )}
+        </div>
 
-        <div className="mt-1 flex items-center gap-2">
+        {showMeta && (
+          <div className="mt-auto flex items-center justify-between pt-1">
+            {item.price !== undefined && (
+              <span className="text-brand-navy text-base font-extrabold sm:text-lg">
+                ${item.price.toFixed(2)}
+              </span>
+            )}
+            {item.rating !== undefined && (
+              <span className="flex items-center gap-1 text-[11px] text-black/60 sm:text-xs">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#fac819" aria-hidden="true">
+                  <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" />
+                </svg>
+                {item.rating.toFixed(1)}
+                {item.ratingCount ? ` (${item.ratingCount})` : ""}
+              </span>
+            )}
+          </div>
+        )}
+
+        <div className={`flex items-center gap-2 ${showMeta ? "" : "mt-auto"}`}>
           <button
             type="button"
-            className="border-brand-navy text-brand-navy flex-1 rounded-lg border py-2 text-[11px] font-semibold whitespace-nowrap transition-colors hover:cursor-pointer hover:bg-brand-navy hover:text-white sm:text-xs"
+            className="bg-brand-red flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-[11px] font-semibold whitespace-nowrap text-white transition-colors hover:cursor-pointer hover:bg-brand-red/90 active:bg-brand-red/80 sm:text-xs"
           >
-            Order Now
-          </button>
-          <button
-            type="button"
-            className="bg-brand-red flex-1 rounded-lg py-2 text-[11px] font-semibold whitespace-nowrap text-white transition-colors hover:cursor-pointer hover:bg-brand-red/90 sm:text-xs"
-          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13L5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H17"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="9" cy="21" r="1" fill="currentColor" />
+              <circle cx="16" cy="21" r="1" fill="currentColor" />
+            </svg>
             Add to Cart
           </button>
         </div>
