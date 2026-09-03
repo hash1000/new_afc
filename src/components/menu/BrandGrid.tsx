@@ -21,7 +21,7 @@ export default function BrandGrid({
 
   return (
     <section className="container-page mx-auto py-10">
-      <h2 className="text-brand-navy text-2xl font-bold sm:text-3xl">Our Brands</h2>
+      <h2 className="font-display text-brand-red text-xl sm:text-2xl">Our Brands</h2>
 
       <AnimatePresence mode="popLayout">
         {filtered.length > 0 ? (

@@ -8,7 +8,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function MenuHero({
+export default function FoodMenuHero({
   search,
   onSearchChange,
 }: {

@@ -8,7 +8,7 @@ import { FiMenu, FiShoppingCart, FiX } from "react-icons/fi";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Order Food", href: "/menu" },
+  { label: "Order Food", href: "/food-menu" },
   { label: "About us", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Partner with us", href: "/franchising" },

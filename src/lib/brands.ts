@@ -18,7 +18,7 @@ export const brands: Brand[] = [
     logoHeight: 120,
     foodImage: "/images/brands/mrbeast.jpg",
     category: ["burgers"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/mrbeast",
   },
   {
     id: "cpk",
@@ -28,7 +28,7 @@ export const brands: Brand[] = [
     logoHeight: 132,
     foodImage: "/images/brands/california.jpg",
     category: ["pizza"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/cpk",
   },
   {
     id: "cheesecake",
@@ -38,7 +38,7 @@ export const brands: Brand[] = [
     logoHeight: 116,
     foodImage: "/images/brands/cheescake.jpg",
     category: ["desserts"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/cheesecake",
   },
   {
     id: "chickchick",
@@ -48,7 +48,7 @@ export const brands: Brand[] = [
     logoHeight: 88,
     foodImage: "/images/brands/chick-chick.jpg",
     category: ["chicken", "chicken-sandwiches"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/chickchick",
   },
   {
     id: "oneslice",
@@ -58,7 +58,7 @@ export const brands: Brand[] = [
     logoHeight: 120,
     foodImage: "/images/brands/one-more-slice.jpg",
     category: ["pizza"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/oneslice",
   },
   {
     id: "dogitup",
@@ -68,7 +68,7 @@ export const brands: Brand[] = [
     logoHeight: 132,
     foodImage: "/images/brands/dog-it-up.jpg",
     category: ["hot-dogs"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/dogitup",
   },
   {
     id: "empanadas",
@@ -78,7 +78,7 @@ export const brands: Brand[] = [
     logoHeight: 144,
     foodImage: "/images/brands/empanda.jpg",
     category: ["empanadas", "mexican"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/empanadas",
   },
   {
     id: "manvsfries",
@@ -88,7 +88,7 @@ export const brands: Brand[] = [
     logoHeight: 136,
     foodImage: "/images/brands/man-vs-fries.jpg",
     category: ["burgers"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/manvsfries",
   },
   {
     id: "chickaroo",
@@ -98,7 +98,7 @@ export const brands: Brand[] = [
     logoHeight: 96,
     foodImage: "/images/brands/chickaroo.jpg",
     category: ["chicken"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/chickaroo",
   },
   {
     id: "sweetwaves",
@@ -108,7 +108,7 @@ export const brands: Brand[] = [
     logoHeight: 120,
     foodImage: "/images/brands/sweet-waves.jpg",
     category: ["desserts", "breakfast"],
-    orderUrl: "#",
+    orderUrl: "/food-menu/sweetwaves",
   },
 ];
 

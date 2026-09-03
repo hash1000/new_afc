@@ -68,7 +68,7 @@ export default function HeroGrid() {
                 </p>
 
                 <Link
-                  href="/menu"
+                  href="/food-menu"
                   className="bg-brand-red inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90"
                 >
                   Order Your Food

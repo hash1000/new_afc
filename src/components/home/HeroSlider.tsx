@@ -93,7 +93,7 @@ export default function HeroSlider() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/menu"
+              href="/food-menu"
               className="bg-brand-red inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">

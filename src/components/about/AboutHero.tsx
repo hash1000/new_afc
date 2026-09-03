@@ -64,10 +64,10 @@ export default function AboutHero() {
           className="mt-8 flex flex-wrap gap-4"
         >
           <Link
-            href="/menu"
+            href="/food-menu"
             className="bg-brand-red rounded-2xl px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90"
           >
-            View Menu
+            View Food Menu
           </Link>
           <Link
             href="/order"
