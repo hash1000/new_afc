@@ -54,7 +54,7 @@ export default function BrandCarousel() {
   const itemWidthPercent = 100 / visible;
 
   return (
-    <section className="container-page relative z-10 w-full overflow-hidden rounded-4xl bg-cream">
+    <section className="container-page relative z-10 w-full overflow-hidden rounded-4xl bg-cream mx-auto">
       <div className="flex items-center gap-4 rounded-4xl px-4 py-2 sm:gap-6 sm:px-6 sm:py-2.5">
         <button
           type="button"

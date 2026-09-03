@@ -21,7 +21,7 @@ const BOTTOM_LINKS = [
 export default function Footer() {
   return (
     <footer className="bg-brand-navy-dark text-white">
-      <div className="container-page py-14 lg:py-16">
+      <div className="container-page mx-auto py-14 lg:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="flex flex-col gap-5 lg:col-span-2 lg:max-w-md">
             <div className="flex items-center gap-3">
