@@ -26,14 +26,32 @@ export default function BrandMenuContent({
           Back to all brands
         </Link>
 
-        {sections.map((section) => (
-          <BrandMenuSection
-            key={section.id}
-            section={section}
-            image={brand.foodImage}
-            accentColor={brand.menuAccentColor}
-          />
-        ))}
+        {brand.comingSoon ? (
+          <section className="rounded-2xl border border-black/5 bg-cream px-5 py-10 text-center shadow-sm sm:px-10 sm:py-14">
+            <span className="text-brand-red text-xs font-bold tracking-[0.18em] uppercase">New menu in progress</span>
+            <h1 className="font-display text-brand-navy mt-3 text-2xl sm:text-3xl">A fresh menu is on the way</h1>
+            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-black/60 sm:text-base">
+              We are putting the finishing touches on {brand.name}. Check back soon for the full menu and ordering details.
+            </p>
+            <Link
+              href="/food-menu"
+              className="bg-brand-red mt-6 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90"
+            >
+              Browse available brands
+              <span aria-hidden="true">→</span>
+            </Link>
+          </section>
+        ) : (
+          sections.map((section) => (
+            <BrandMenuSection
+              key={section.id}
+              section={section}
+              image={brand.foodImage}
+              imageFit={brand.id === "mrbeast" ? "cover" : undefined}
+              accentColor={brand.menuAccentColor}
+            />
+          ))
+        )}
       </div>
     </>
   );

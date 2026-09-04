@@ -9,8 +9,25 @@ export interface Brand {
   orderUrl: string;
   /** Full-bleed banner image for the brand menu page hero, replaces the default logo+foodImage layout when set. */
   menuBanner?: string;
+  /** Intrinsic pixel dimensions of menuBanner, used to preserve its native aspect ratio. */
+  menuBannerWidth?: number;
+  menuBannerHeight?: number;
+  /** Crisp logo (SVG/PNG with transparency) overlaid top-left on menuBanner, used instead of any logo baked into the banner image. */
+  menuBannerLogo?: string;
+  menuBannerLogoWidth?: number;
+  menuBannerLogoHeight?: number;
   /** Cream-card hero variant: logo top-left over a plated food cutout bottom-right, used instead of menuBanner. */
   menuHeroImage?: string;
+  /** Logo shown on the left side of the cream-card menu hero. */
+  menuHeroLogo?: string;
+  menuHeroLogoWidth?: number;
+  menuHeroLogoHeight?: number;
+  /** Intrinsic dimensions for the food image shown on the right side of the menu hero. */
+  menuHeroImageWidth?: number;
+  menuHeroImageHeight?: number;
+  /** Background color for the logo-and-food menu hero banner. */
+  menuHeroColor?: string;
+  comingSoon?: boolean;
   /** Hex color for menu item titles on the brand's menu page. Defaults to the site red accent. */
   menuAccentColor?: string;
 }
@@ -25,7 +42,11 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/mrbeast.jpg",
     category: ["burgers"],
     orderUrl: "/food-menu/mrbeast",
-    menuBanner: "/images/menu/mr-beast/mr-beast-header.jpg",
+    menuHeroLogo: "/images/menu/mr-beast/mr-beast-header-logo.svg",
+    menuHeroImage: "/images/menu/mr-beast/mrbeast-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#32c1fc",
   },
   {
     id: "cpk",
@@ -36,7 +57,11 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/california.jpg",
     category: ["pizza"],
     orderUrl: "/food-menu/cpk",
-    menuBanner: "/images/menu/california-pizza/california-pizza-header.jpg",
+    menuHeroLogo: "/images/menu/california-pizza/california-logo.png",
+    menuHeroImage: "/images/menu/california-pizza/california-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#fef8e3",
   },
   {
     id: "cheesecake",
@@ -47,7 +72,11 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/cheescake.jpg",
     category: ["desserts"],
     orderUrl: "/food-menu/cheesecake",
-    menuHeroImage: "/images/menu/chees-cake/cheesecake-img.jpg",
+    menuHeroLogo: "/images/menu/chees-cake/cheescake-logo.png",
+    menuHeroImage: "/images/menu/chees-cake/cheesecake-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#fef8e3",
     menuAccentColor: "#aa903d",
   },
   {
@@ -59,17 +88,22 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/chick-chick.jpg",
     category: ["chicken", "chicken-sandwiches"],
     orderUrl: "/food-menu/chickchick",
+    comingSoon: true,
   },
   {
     id: "oneslice",
     name: "One More Slice Pizza",
-    logo: "/images/brands/oneslice-logo.png",
+    logo: "/images/menu/one-more-slice/one-more-slice-header-logo.png",
     logoWidth: 256,
     logoHeight: 120,
     foodImage: "/images/brands/one-more-slice.jpg",
     category: ["pizza"],
     orderUrl: "/food-menu/oneslice",
-    menuBanner: "/images/menu/one-more-slice/herder.jpg",
+    menuHeroLogo: "/images/menu/one-more-slice/one-more-slice-header-logo.png",
+    menuHeroImage: "/images/menu/one-more-slice/onemoreslice-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#f95d0b",
   },
   {
     id: "dogitup",
@@ -80,7 +114,11 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/dog-it-up.jpg",
     category: ["hot-dogs"],
     orderUrl: "/food-menu/dogitup",
-    menuBanner: "/images/menu/dog-it-up/dog-it-up-header.jpg",
+    menuHeroLogo: "/images/menu/dog-it-up/dog-it-up-logo.png",
+    menuHeroImage: "/images/menu/dog-it-up/dog-it-up-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#fef8e3",
   },
   {
     id: "empanadas",
@@ -91,6 +129,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/empanda.jpg",
     category: ["empanadas", "mexican"],
     orderUrl: "/food-menu/empanadas",
+    comingSoon: true,
   },
   {
     id: "manvsfries",
@@ -101,7 +140,11 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/man-vs-fries.jpg",
     category: ["burgers"],
     orderUrl: "/food-menu/manvsfries",
-    menuBanner: "/images/menu/menvsfries/manvsfries-header.jpg",
+    menuHeroLogo: "/images/menu/menvsfries/manvsfries-logo.png",
+    menuHeroImage: "/images/menu/menvsfries/manvsfries-img.png",
+    menuHeroImageWidth: 0,
+    menuHeroImageHeight: 0,
+    menuHeroColor: "#ff76b1",
   },
   {
     id: "chickaroo",
@@ -112,6 +155,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/chickaroo.jpg",
     category: ["chicken"],
     orderUrl: "/food-menu/chickaroo",
+    comingSoon: true,
   },
   {
     id: "sweetwaves",
@@ -122,6 +166,7 @@ export const brands: Brand[] = [
     foodImage: "/images/brands/sweet-waves.jpg",
     category: ["desserts", "breakfast"],
     orderUrl: "/food-menu/sweetwaves",
+    comingSoon: true,
   },
 ];
 

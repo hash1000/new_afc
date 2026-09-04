@@ -25,10 +25,9 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
-  console.log(pathname);
   return (
-    <header className="inset-x-0 top-0 z-50 bg-white ">
-      <nav className="container-page mx-auto flex items-center justify-between gap-4 py-4 sm:py-5">
+    <header className="inset-x-0 top-0 z-50 bg-white">
+      <nav className="container-page mx-auto flex min-h-20 items-center justify-between gap-3 py-3 sm:min-h-24 sm:py-4">
         <Link href="/" className="relative z-50 shrink-0">
           <Image
             src="/images/home/afc-logo.svg"
@@ -36,7 +35,7 @@ export default function Navbar() {
             width={110}
             height={78}
             priority
-            className="h-14 w-auto sm:h-16 lg:h-19.5"
+            className="h-12 w-auto sm:h-16 lg:h-[4.875rem]"
           />
         </Link>
 

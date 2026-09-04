@@ -16,7 +16,7 @@ export default function FoodMenuHero({
   onSearchChange: (value: string) => void;
 }) {
   return (
-    <section className="relative flex min-h-[420px] lg:w-[1440px] rounded-xl mx-auto justify-center items-center overflow-hidden py-12 sm:min-h-140">
+    <section className="relative mx-auto flex min-h-[360px] w-full max-w-[1440px] items-center justify-center overflow-hidden rounded-xl px-0 py-10 sm:min-h-[520px] sm:py-12 lg:min-h-[560px]">
       <Image
         src="/images/menu/hero-food-mobile.jpg"
         alt="Burgers, hot dog and milkshake from Americas Food Court brands"
@@ -59,7 +59,7 @@ export default function FoodMenuHero({
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-display mt-14 text-lg text-white sm:text-xl"
+            className="font-display mt-10 text-base text-white sm:mt-14 sm:text-xl"
           >
             Your Favorites, Delivered Fast
           </motion.p>
@@ -74,7 +74,7 @@ export default function FoodMenuHero({
               value={search}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Type to search your food here i.e. Burger, Pizza, Hot Dogs etc..."
-              className="text-brand-navy h-14 w-full rounded-full bg-white pr-16 pl-6 text-sm placeholder:text-black/50 focus:outline-none"
+              className="text-brand-navy h-12 w-full rounded-full bg-white pr-14 pl-4 text-xs placeholder:text-black/50 focus:outline-none sm:h-14 sm:pl-6 sm:text-sm"
             />
             <button
               type="button"

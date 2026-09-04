@@ -21,11 +21,11 @@ const BOTTOM_LINKS = [
 export default function Footer() {
   return (
     <footer className="bg-brand-navy-dark text-white">
-      <div className="container-page mx-auto py-14 lg:py-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <div className="container-page mx-auto py-10 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-8">
           <div className="flex flex-col gap-5 lg:col-span-2 lg:max-w-md">
             <div className="flex items-center gap-3">
-              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl shadow-sm">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl shadow-sm sm:h-24 sm:w-24">
                 <Image
                   src="/images/home/afc-logo.svg"
                   alt="Americas Food Court"
@@ -134,9 +134,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-col gap-3 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-page flex flex-col gap-3 py-5 text-center text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p>&copy; 2026 America&apos;s Food Court. All rights reserved.</p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 sm:justify-end">
             {BOTTOM_LINKS.map((link) => (
               <Link
                 key={link.href}

@@ -3,14 +3,19 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { MenuItem } from "@/lib/menu-items";
+import ComingSoonPlaceholder from "./ComingSoonPlaceholder";
 
 export default function MenuItemCard({
   item,
   image,
+  comingSoon,
+  imageFit = "contain",
   accentColor,
 }: {
   item: MenuItem;
   image: string;
+  comingSoon?: boolean;
+  imageFit?: "contain" | "cover";
   accentColor?: string;
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -19,14 +24,18 @@ export default function MenuItemCard({
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-cream/60 shadow-sm transition-shadow duration-200 hover:shadow-md">
-      <div className="relative aspect-4/3 w-full overflow-hidden bg-white p-3 sm:p-4">
-        <Image
-          src={item.image ?? image}
-          alt={item.name}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-        />
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-white p-2.5 sm:p-4">
+        {comingSoon ? (
+          <ComingSoonPlaceholder brandName="This menu" />
+        ) : (
+          <Image
+            src={item.image ?? image}
+            alt={item.name}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+            className={`${imageFit === "cover" ? "object-cover" : "object-contain p-4"} transition-transform duration-300 group-hover:scale-105`}
+          />
+        )}
         <button
           type="button"
           onClick={() => setIsFavorite((prev) => !prev)}
@@ -51,7 +60,7 @@ export default function MenuItemCard({
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
+      <div className="flex flex-1 flex-col gap-2 p-2.5 sm:p-4">
         <h3
           className={`text-xs font-bold tracking-wide uppercase sm:text-sm ${accentColor ? "" : "text-brand-red"}`}
           style={accentColor ? { color: accentColor } : undefined}
@@ -59,7 +68,7 @@ export default function MenuItemCard({
           {item.name}
         </h3>
         <div className="flex items-start justify-between gap-2">
-          <p className="line-clamp-3 text-[11px] text-black/60 sm:text-xs">
+          <p className="line-clamp-3 text-[10px] leading-relaxed text-black/60 sm:text-xs">
             {item.description}
           </p>
           {item.sizeLabel && (
