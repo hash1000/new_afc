@@ -8,14 +8,9 @@ export default function BrandMenuHero({ brand }: { brand: Brand }) {
       <section className="container-page mx-auto pt-4 sm:pt-8">
         <div className="relative flex min-h-56 flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-brand-red/10 bg-[repeating-linear-gradient(135deg,#fff8ea_0,#fff8ea_14px,#f8edd8_14px,#f8edd8_28px)] px-6 py-8 text-center shadow-sm sm:min-h-64 sm:gap-5">
           <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-brand-yellow/20" aria-hidden="true" />
-          <Image
-            src={brand.logo}
-            alt={brand.name}
-            width={brand.logoWidth}
-            height={brand.logoHeight}
-            priority
-            className="relative z-10 h-auto max-h-20 w-auto max-w-[70%] object-contain sm:max-h-24"
-          />
+          <span className="relative z-10 max-w-[90%] font-display text-2xl text-brand-navy sm:text-4xl">
+            {brand.name}
+          </span>
           <div className="relative z-10 flex flex-col items-center gap-1">
             <span className="font-display text-lg text-brand-red sm:text-2xl">Coming Soon</span>
             <p className="max-w-md text-xs text-brand-navy/70 sm:text-sm">
@@ -39,10 +34,10 @@ export default function BrandMenuHero({ brand }: { brand: Brand }) {
           }}
         >
           <Image
-            src={brand.menuHeroLogo ?? brand.logo}
+            src={brand.menuHeroLogo ?? brand.logo ?? "/images/home/afc-logo.svg"}
             alt={brand.name}
-            width={brand.menuHeroLogoWidth ?? brand.logoWidth}
-            height={brand.menuHeroLogoHeight ?? brand.logoHeight}
+            width={brand.menuHeroLogoWidth ?? brand.logoWidth ?? 256}
+            height={brand.menuHeroLogoHeight ?? brand.logoHeight ?? 120}
             priority
             className="relative z-10 h-24 w-full object-contain object-center sm:h-[94%] sm:w-[38%] sm:object-left"
           />
@@ -117,10 +112,10 @@ export default function BrandMenuHero({ brand }: { brand: Brand }) {
     <section className="container-page mx-auto pt-6 sm:pt-8">
       <div className="relative flex h-32 items-center justify-between overflow-hidden rounded-2xl bg-[#eaf4ff] px-6 sm:h-40 sm:px-10">
         <Image
-          src={brand.logo}
+          src={brand.logo ?? "/images/home/afc-logo.svg"}
           alt={brand.name}
-          width={brand.logoWidth}
-          height={brand.logoHeight}
+          width={brand.logoWidth ?? 256}
+          height={brand.logoHeight ?? 120}
           priority
           className="h-16 w-auto object-contain sm:h-24"
         />

@@ -13,12 +13,14 @@ export default function BrandGrid({
   search: string;
   activeCategory: string;
 }) {
-  const filtered = brands.filter((brand) => {
-    const query = search.trim().toLowerCase();
-    const matchesSearch = query === "" || brand.name.toLowerCase().includes(query);
-    const matchesCategory = activeCategory === "all" || brand.category.includes(activeCategory);
-    return matchesSearch && matchesCategory;
-  });
+  const filtered = brands
+    .filter((brand) => {
+      const query = search.trim().toLowerCase();
+      const matchesSearch = query === "" || brand.name.toLowerCase().includes(query);
+      const matchesCategory = activeCategory === "all" || brand.category.includes(activeCategory);
+      return matchesSearch && matchesCategory;
+    })
+    .sort((first, second) => Number(Boolean(first.comingSoon)) - Number(Boolean(second.comingSoon)));
 
   return (
     <section className="container-page mx-auto py-8 sm:py-10">
@@ -53,15 +55,17 @@ export default function BrandGrid({
                     className="object-cover"
                   />
                 )}
-                <div className="absolute top-5 left-4 w-[55%] max-w-45 sm:top-9">
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={brand.logoWidth}
-                    height={brand.logoHeight}
-                    className="h-auto w-full object-contain drop-shadow-sm"
-                  />
-                </div>
+                {!brand.comingSoon && brand.logo && (
+                  <div className="absolute top-5 left-4 w-[55%] max-w-45 sm:top-9">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={brand.logoWidth ?? 256}
+                      height={brand.logoHeight ?? 120}
+                      className="h-auto w-full object-contain drop-shadow-sm"
+                    />
+                  </div>
+                )}
                 <Link
                   href={brand.orderUrl}
                   className="bg-brand-red absolute bottom-3 left-4 inline-flex shrink-0 items-center gap-1 rounded-lg px-3 py-2 text-[11px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-red/90 sm:bottom-4 sm:text-xs"

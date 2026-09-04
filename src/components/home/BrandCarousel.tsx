@@ -6,13 +6,9 @@ import { useEffect, useState } from "react";
 const BRANDS = [
   { name: "MrBeast Burger", src: "/images/home/logo-mrbeast.webp", w: 250, h: 250 },
   { name: "One More Slice", src: "/images/home/logo-oneslice.webp", w: 250, h: 250 },
-  { name: "Sweet Waves Kitchen", src: "/images/home/logo-sweetwaves.webp", w: 250, h: 250 },
   { name: "California Pizza Kitchen", src: "/images/home/logo-cpk.webp", w: 250, h: 250 },
   { name: "The Cheesecake Factory Bakery", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
-  { name: "Chickaroo Chicken", src: "/images/home/logo-chickaroo.webp", w: 250, h: 250 },
-  { name: "Chick Chick Eat", src: "/images/home/logo-chickchickeat.webp", w: 250, h: 250 },
   { name: "Dog It Up", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
-  { name: "Empanadas United", src: "/images/home/logo-empanadas.webp", w: 250, h: 250 },
   { name: "Man vs Fries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
   { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
   { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },

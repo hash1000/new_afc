@@ -1,9 +1,9 @@
 export interface Brand {
   id: string;
   name: string;
-  logo: string;
-  logoWidth: number;
-  logoHeight: number;
+  logo?: string;
+  logoWidth?: number;
+  logoHeight?: number;
   foodImage: string;
   category: string[];
   orderUrl: string;
@@ -82,9 +82,6 @@ export const brands: Brand[] = [
   {
     id: "chickchick",
     name: "Chick Chick Eats",
-    logo: "/images/brands/chickchick-logo.png",
-    logoWidth: 269,
-    logoHeight: 88,
     foodImage: "/images/brands/chick-chick.jpg",
     category: ["chicken", "chicken-sandwiches"],
     orderUrl: "/food-menu/chickchick",
@@ -123,9 +120,6 @@ export const brands: Brand[] = [
   {
     id: "empanadas",
     name: "Empanadas United",
-    logo: "/images/brands/empanadas-logo.png",
-    logoWidth: 308,
-    logoHeight: 144,
     foodImage: "/images/brands/empanda.jpg",
     category: ["empanadas", "mexican"],
     orderUrl: "/food-menu/empanadas",
@@ -149,9 +143,6 @@ export const brands: Brand[] = [
   {
     id: "chickaroo",
     name: "Chickaroo Chicken",
-    logo: "/images/brands/chickaroo-logo.png",
-    logoWidth: 292,
-    logoHeight: 96,
     foodImage: "/images/brands/chickaroo.jpg",
     category: ["chicken"],
     orderUrl: "/food-menu/chickaroo",
@@ -160,9 +151,6 @@ export const brands: Brand[] = [
   {
     id: "sweetwaves",
     name: "Sweet Waves Kitchen",
-    logo: "/images/brands/sweetwaves-logo.png",
-    logoWidth: 256,
-    logoHeight: 120,
     foodImage: "/images/brands/sweet-waves.jpg",
     category: ["desserts", "breakfast"],
     orderUrl: "/food-menu/sweetwaves",

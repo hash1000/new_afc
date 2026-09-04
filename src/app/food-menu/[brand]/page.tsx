@@ -35,9 +35,9 @@ export default async function BrandMenuPage({
 }) {
   const { brand: brandId } = await params;
   const brand = brands.find((b) => b.id === brandId);
-  const sections = brandMenus[brandId];
+  const sections = brandMenus[brandId] ?? [];
 
-  if (!brand || !sections) {
+  if (!brand) {
     notFound();
   }
 

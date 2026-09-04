@@ -465,49 +465,6 @@ export const brandMenus: Record<string, MenuSection[]> = {
     },
   ],
 
-  chickchick: [
-    {
-      id: "combos",
-      title: "Combos",
-      items: [
-        {
-          id: "chick-chick-combo",
-          name: "Chick Chick Combo",
-          description: "Crispy chicken sandwich with seasoned fries and a drink.",
-        },
-      ],
-    },
-    {
-      id: "chicken-sandwiches",
-      title: "Chicken Sandwiches",
-      items: [
-        { id: "classic-crispy-sandwich", name: "Classic Crispy Sandwich", description: "Crispy chicken breast, pickles and mayo on a toasted bun." },
-        { id: "spicy-chick-sandwich", name: "Spicy Chick Sandwich", description: "Crispy chicken breast tossed in spicy sauce with slaw." },
-      ],
-    },
-    {
-      id: "chicken",
-      title: "Chicken",
-      items: [
-        { id: "chicken-wings", name: "Chicken Wings", description: "Crispy fried wings tossed in your choice of sauce." },
-        { id: "chicken-tenders", name: "Chicken Tenders", description: "Hand-breaded crispy chicken tenders." },
-      ],
-    },
-    {
-      id: "sides",
-      title: "Sides",
-      items: [{ id: "seasoned-fries", name: "Seasoned Fries", description: "Crinkle fries with signature seasoning." }],
-    },
-    {
-      id: "beverages",
-      title: "Beverages",
-      items: [
-        { id: "canned-soda", name: "Canned Soda", description: "Ice-cold canned soda of your choice." },
-        { id: "bottled-water", name: "Bottled Water", description: "Chilled bottled water." },
-      ],
-    },
-  ],
-
   oneslice: [
     {
       id: "signature-slices",
@@ -852,43 +809,6 @@ export const brandMenus: Record<string, MenuSection[]> = {
     },
   ],
 
-  empanadas: [
-    {
-      id: "combos",
-      title: "Combos",
-      items: [
-        { id: "empanada-duo-combo", name: "Empanada Duo Combo", description: "Two empanadas of your choice with a drink." },
-      ],
-    },
-    {
-      id: "empanadas",
-      title: "Empanadas",
-      items: [
-        { id: "beef-empanada", name: "Beef Empanada", description: "Seasoned ground beef folded in a golden, flaky crust." },
-        { id: "chicken-empanada", name: "Chicken Empanada", description: "Shredded chicken with peppers and onions in a flaky crust." },
-        { id: "cheese-empanada", name: "Cheese Empanada", description: "Melted mozzarella and cheddar in a flaky crust." },
-      ],
-    },
-    {
-      id: "mexican",
-      title: "Mexican",
-      items: [{ id: "street-tacos", name: "Street Tacos", description: "Corn tortillas with seasoned meat, onion and cilantro." }],
-    },
-    {
-      id: "sides",
-      title: "Sides",
-      items: [{ id: "chimichurri-rice", name: "Chimichurri Rice", description: "Rice tossed with fresh chimichurri sauce." }],
-    },
-    {
-      id: "beverages",
-      title: "Beverages",
-      items: [
-        { id: "canned-soda", name: "Canned Soda", description: "Ice-cold canned soda of your choice." },
-        { id: "bottled-water", name: "Bottled Water", description: "Chilled bottled water." },
-      ],
-    },
-  ],
-
   manvsfries: [
     {
       id: "fries",
@@ -999,76 +919,4 @@ export const brandMenus: Record<string, MenuSection[]> = {
     },
   ],
 
-  chickaroo: [
-    {
-      id: "combos",
-      title: "Combos",
-      items: [
-        { id: "chickaroo-combo", name: "Chickaroo Combo", description: "Crispy chicken sandwich with fries, nuggets and a drink." },
-      ],
-    },
-    {
-      id: "chicken-sandwiches",
-      title: "Chicken Sandwiches",
-      items: [{ id: "chickaroo-sandwich", name: "Chickaroo Sandwich", description: "Crispy chicken breast with lettuce, tomato and mayo on a brioche bun." }],
-    },
-    {
-      id: "chicken",
-      title: "Chicken",
-      items: [
-        { id: "chicken-nuggets", name: "Chicken Nuggets", description: "Bite-sized crispy chicken nuggets." },
-        { id: "chicken-tenders", name: "Chicken Tenders", description: "Hand-breaded crispy chicken tenders." },
-      ],
-    },
-    {
-      id: "sides",
-      title: "Sides",
-      items: [
-        { id: "crinkle-fries", name: "Crinkle Fries", description: "Crinkle fries lightly seasoned with salt." },
-        { id: "coleslaw", name: "Coleslaw", description: "Creamy house-made coleslaw." },
-      ],
-    },
-    {
-      id: "beverages",
-      title: "Beverages",
-      items: [
-        { id: "canned-soda", name: "Canned Soda", description: "Ice-cold canned soda of your choice." },
-        { id: "bottled-water", name: "Bottled Water", description: "Chilled bottled water." },
-      ],
-    },
-  ],
-
-  sweetwaves: [
-    {
-      id: "combos",
-      title: "Combos",
-      items: [
-        { id: "breakfast-combo", name: "Breakfast Combo", description: "Breakfast sandwich with a milkshake." },
-      ],
-    },
-    {
-      id: "breakfast",
-      title: "Breakfast",
-      items: [
-        { id: "bacon-egg-cheese-sandwich", name: "Bacon, Egg & Cheese Sandwich", description: "Crispy bacon, egg and cheese on a toasted brioche bun." },
-        { id: "glazed-donut", name: "Glazed Donut", description: "Soft glazed donut with a sweet drizzle." },
-      ],
-    },
-    {
-      id: "desserts",
-      title: "Desserts",
-      items: [
-        { id: "milkshake", name: "Milkshake", description: "Creamy milkshake topped with whipped cream and cookie crumble." },
-        { id: "soft-serve", name: "Soft Serve", description: "Classic soft serve ice cream." },
-      ],
-    },
-    {
-      id: "beverages",
-      title: "Beverages",
-      items: [
-        { id: "iced-coffee", name: "Iced Coffee", description: "Chilled coffee over ice." },
-        { id: "bottled-water", name: "Bottled Water", description: "Chilled bottled water." },
-      ],
-    },
-  ],
 };
