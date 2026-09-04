@@ -54,13 +54,13 @@ export default function BrandCarousel() {
   const itemWidthPercent = 100 / visible;
 
   return (
-    <section className="container-page relative z-10 w-full overflow-hidden rounded-4xl bg-cream mx-auto">
-      <div className="flex items-center gap-4 rounded-4xl px-4 py-2 sm:gap-6 sm:px-6 sm:py-2.5">
+    <section className="container-page relative z-10 mx-auto w-full overflow-hidden rounded-3xl bg-cream">
+      <div className="flex items-center gap-2 rounded-3xl px-2 py-2 sm:gap-4 sm:px-4 sm:py-2.5 lg:gap-6 lg:px-6">
         <button
           type="button"
           onClick={prev}
           aria-label="Previous brands"
-          className="border-brand-navy text-brand-navy hover:bg-brand-navy flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors hover:text-white sm:h-10 sm:w-10"
+            className="border-brand-navy text-brand-navy hover:bg-brand-navy flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors hover:text-white sm:h-10 sm:w-10"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -75,7 +75,7 @@ export default function BrandCarousel() {
             {loopedBrands.map((brand, i) => (
               <div
                 key={`${brand.name}-${i}`}
-                className="flex shrink-0 items-center justify-center px-3"
+                className="flex h-16 shrink-0 items-center justify-center px-1 sm:h-20 sm:px-2 lg:h-24 lg:px-3"
                 style={{ width: `${itemWidthPercent}%` }}
               >
                 <Image
@@ -83,7 +83,7 @@ export default function BrandCarousel() {
                   alt={brand.name}
                   width={brand.w}
                   height={brand.h}
-                  className=" w-auto object-contain transition-transform duration-300 hover:scale-105"
+                  className="h-14 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 sm:h-[4.5rem] lg:h-[5.5rem]"
                 />
               </div>
             ))}

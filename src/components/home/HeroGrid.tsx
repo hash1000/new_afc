@@ -31,10 +31,10 @@ const fadeUp = {
 
 export default function HeroGrid() {
   return (
-    <section className="relative flex min-h-[100vh] flex-col overflow-hidden pt-6 pb-3 sm:pt-8 sm:pb-4">
-      <div className="container-page mx-auto flex flex-col gap-2">
+    <section className="relative flex flex-col overflow-hidden pt-4 pb-3 sm:pt-6 sm:pb-4 lg:pt-8">
+      <div className="container-page mx-auto flex flex-col gap-3 sm:gap-4">
         <motion.div
-          className="flex flex-col gap-2 lg:h-[clamp(520px,72vh,760px)] lg:flex-row"
+          className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-[1.04fr_0.96fr] lg:items-stretch"
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.15 }}
@@ -42,7 +42,7 @@ export default function HeroGrid() {
           <motion.div
             variants={fadeUp}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative w-full lg:w-[52%]"
+            className="relative min-h-[420px] w-full sm:min-h-[560px] lg:min-h-0 lg:aspect-[0.95]"
           >
             <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-brand-red">
               <ImageSlider
@@ -59,7 +59,7 @@ export default function HeroGrid() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-                className="absolute inset-x-0 bottom-0 z-30 flex flex-wrap items-center justify-between gap-4 bg-brand-navy/95 px-5 py-4 sm:px-6 sm:py-5"
+                className="absolute inset-x-0 bottom-0 z-30 flex flex-col items-start gap-3 bg-brand-navy/95 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-5"
               >
                 <p className="font-display text-white uppercase leading-[1]">
                   All the foods you love,
@@ -69,7 +69,7 @@ export default function HeroGrid() {
 
                 <Link
                   href="/food-menu"
-                  className="bg-brand-red inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90"
+                  className="bg-brand-red inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-brand-red/90 sm:rounded-2xl sm:px-5 sm:py-3 sm:text-sm"
                 >
                   Order Your Food
                   <span aria-hidden="true">→</span>
@@ -81,7 +81,7 @@ export default function HeroGrid() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}
-              className="absolute -top-6 left-6 z-20 w-[55%] sm:-top-8"
+              className="absolute -top-3 left-4 z-20 w-[62%] sm:-top-5 sm:left-6 sm:w-[55%]"
             >
               <Image
                 src="/images/home/hero-msg.svg"
@@ -97,7 +97,7 @@ export default function HeroGrid() {
           <motion.div
             variants={fadeUp}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="flex flex-col gap-2 lg:w-[48%]"
+            className="grid min-h-[420px] grid-rows-2 gap-3 sm:min-h-[560px] sm:gap-4 lg:min-h-0"
           >
             <motion.div
               initial={{ opacity: 0, x: 24 }}
