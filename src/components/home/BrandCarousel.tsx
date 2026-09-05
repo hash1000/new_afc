@@ -10,8 +10,8 @@ const BRANDS = [
   { name: "The Cheesecake Factory Bakery", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
   { name: "Dog It Up", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
   { name: "Man vs Fries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
-  { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
-  { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },
+  // { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
+  // { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },
 ];
 
 const MOBILE_VISIBLE = 2;
