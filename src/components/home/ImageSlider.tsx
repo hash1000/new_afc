@@ -11,6 +11,7 @@ type ImageSliderProps = {
   className?: string;
   intervalMs?: number;
   priority?: boolean;
+  fit?: "cover" | "contain";
 };
 
 export default function ImageSlider({
@@ -20,6 +21,7 @@ export default function ImageSlider({
   className,
   intervalMs = 4000,
   priority = false,
+  fit = "cover",
 }: ImageSliderProps) {
   const [current, setCurrent] = useState(0);
 
@@ -46,7 +48,13 @@ export default function ImageSlider({
           alt={alt}
           fill
           sizes={sizes}
-          className={className}
+          className={[
+            "h-full w-full",
+            fit === "contain" ? "object-contain" : "object-cover",
+            className,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           priority={priority && current === 0}
         />
       </motion.div>

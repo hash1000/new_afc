@@ -8,20 +8,23 @@ import ImageSlider from "./ImageSlider";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const LEFT_IMAGES = [
+  "/images/home/home-left.jpg",
   "/images/home/home-left-1.jpg",
   "/images/home/home-left-2.jpg",
   "/images/home/home-left-3.jpg",
 ];
 
 const UP_RIGHT_IMAGES = [
+  "/images/home/home-up-right.jpg",
   "/images/home/home-up-right-1.jpg",
   "/images/home/home-up-right-2.jpg",
 ];
 
 const DOWN_RIGHT_IMAGES = [
-  "/images/home/home-down-right-1.jpg",
-  "/images/home/home-down-right-2.jpg",
-  "/images/home/home-down-right-3.jpg",
+  "/images/home/home-down-right.png",
+  "/images/home/home-down-right-1.png",
+  "/images/home/home-down-right-2.png",
+  "/images/home/home-down-right-3.png",
 ];
 
 const fadeUp = {
@@ -103,13 +106,14 @@ export default function HeroGrid() {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              className="relative flex-1 overflow-hidden rounded-[28px]"
+              className="relative flex-1 overflow-hidden rounded-[28px] bg-[#f6f0e3]"
             >
               <ImageSlider
                 images={UP_RIGHT_IMAGES}
                 alt="Eat Like a Beast — MrBeast Burger promo"
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
+                className="object-contain"
+                fit="contain"
                 intervalMs={4500}
               />
             </motion.div>
@@ -118,13 +122,14 @@ export default function HeroGrid() {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
-              className="relative flex-1 overflow-hidden rounded-[28px]"
+              className="relative flex-1 overflow-hidden rounded-[28px] bg-[#f6f0e3]"
             >
               <ImageSlider
                 images={DOWN_RIGHT_IMAGES}
                 alt="It's Burger Day — Big flavor, beast-sized satisfaction"
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
+                className="object-contain"
+                fit="contain"
                 intervalMs={5000}
               />
             </motion.div>
