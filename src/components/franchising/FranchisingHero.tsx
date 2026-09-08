@@ -32,14 +32,14 @@ const FEATURES = [
 ];
 
 const FORMATS: { img: string; position?: string }[] = [
-  { img: "/images/franchising/storefront-exterior-night-01.jpg" },
-  { img: "/images/franchising/storefront-drive-thru-menu.jpg" },
-  { img: "/images/franchising/storefront-kiosk-mall.jpg" },
-  { img: "/images/franchising/storefront-dining-room-night.jpg" },
-  { img: "/images/franchising/storefront-travel-plaza.jpg", position: "object-top" },
-  { img: "/images/franchising/storefront-exterior-night-02.jpg" },
-  { img: "/images/franchising/storefront-mall-entrance.jpg" },
-  { img: "/images/franchising/storefront-airport-terminal.jpg" },
+  { img: "/images/franchising/format-airports.png" },
+  { img: "/images/franchising/format-convenience.png" },
+  { img: "/images/franchising/format-drive-thru.png" },
+  { img: "/images/franchising/format-kiosks.png" },
+  { img: "/images/franchising/format-malls.png", position: "object-top" },
+  { img: "/images/franchising/format-retail.png" },
+  { img: "/images/franchising/format-traditional.png" },
+  { img: "/images/franchising/format-travel.png" },
 ];
 
 export default function FranchisingHero() {
@@ -152,14 +152,10 @@ export default function FranchisingHero() {
                   fill
                   priority={current === 0}
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className={`object-cover ${FORMATS[current].position ?? "object-center"}`}
+                  className={` object-center ${FORMATS[current].position ?? "object-center"}`}
                 />
               </motion.div>
             </AnimatePresence>
-
-            <span className="bg-brand-navy absolute top-0 left-0 rounded-br-2xl px-6 py-3 text-sm font-semibold text-white">
-              Americas Food Court
-            </span>
 
             <div className="absolute inset-x-3 bottom-3 rounded-xl bg-white/95 p-2.5 shadow-xl backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-4">
               <div className="grid grid-cols-8 gap-1 sm:gap-3">

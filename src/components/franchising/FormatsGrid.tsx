@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const FORMATS = [
-  { label: "Drive-Thru", src: "/images/franchising/format-drive-thru.jpg" },
-  { label: "Traditional Restaurants", src: "/images/franchising/format-traditional.jpg" },
-  { label: "Travels Plazas", src: "/images/franchising/format-travel.jpg" },
-  { label: "Convenience Stores", src: "/images/franchising/format-convenience.jpg" },
-  { label: "Retails", src: "/images/franchising/format-retail.jpg" },
-  { label: "Malls", src: "/images/franchising/format-malls.jpg" },
-  { label: "Airports", src: "/images/franchising/format-airports.jpg" },
-  { label: "Kiosks", src: "/images/franchising/format-kiosks.jpg" },
+  { label: "Drive-Thru", src: "/images/franchising/storefront-airport-terminal.png" },
+  { label: "Traditional Restaurants", src: "/images/franchising/storefront-dining-room-night.png" },
+  { label: "Travels Plazas", src: "/images/franchising/storefront-drive-thru-menu.png" },
+  { label: "Convenience Stores", src: "/images/franchising/storefront-exterior-night-01.png" },
+  { label: "Retails", src: "/images/franchising/storefront-exterior-night-02.png" },
+  { label: "Malls", src: "/images/franchising/storefront-kiosk-mall.png" },
+  { label: "Airports", src: "/images/franchising/storefront-mall-entrance.png" },
+  { label: "Kiosks", src: "/images/franchising/storefront-travel-plaza.png" },
 ];
 
 const fadeUp = {

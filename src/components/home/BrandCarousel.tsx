@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const BRANDS = [
-  { name: "MrBeast Burger", src: "/images/home/logo-mrbeast.webp", w: 250, h: 250 },
-  { name: "One More Slice", src: "/images/home/logo-oneslice.webp", w: 250, h: 250 },
-  { name: "California Pizza Kitchen", src: "/images/home/logo-cpk.webp", w: 250, h: 250 },
-  { name: "The Cheesecake Factory Bakery", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
-  { name: "Dog It Up", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
-  { name: "Man vs Fries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
+  { name: "MrBeast Burger", href: "/food-menu/mrbeast", src: "/images/home/logo-mrbeast.webp", w: 250, h: 250 },
+  { name: "One More Slice", href: "/food-menu/oneslice", src: "/images/home/logo-oneslice.webp", w: 250, h: 250 },
+  { name: "California Pizza Kitchen", href: "/food-menu/cpk", src: "/images/home/logo-cpk.webp", w: 250, h: 250 },
+  { name: "The Cheesecake Factory Bakery", href: "/food-menu/cheesecake", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
+  { name: "Dog It Up", href: "/food-menu/dogitup", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
+  { name: "Man vs Fries", href: "/food-menu/manvsfries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
   // { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
   // { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },
 ];
@@ -74,13 +75,19 @@ export default function BrandCarousel() {
                 className="flex h-16 shrink-0 items-center justify-center px-1 sm:h-20 sm:px-2 lg:h-24 lg:px-3"
                 style={{ width: `${itemWidthPercent}%` }}
               >
-                <Image
-                  src={brand.src}
-                  alt={brand.name}
-                  width={brand.w}
-                  height={brand.h}
-                  className="h-14 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 sm:h-[4.5rem] lg:h-[5.5rem]"
-                />
+                <Link
+                  href={brand.href}
+                  aria-label={`View ${brand.name} menu`}
+                  className="flex h-full w-full items-center justify-center rounded-xl outline-offset-4 transition-colors hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-brand-navy"
+                >
+                  <Image
+                    src={brand.src}
+                    alt={brand.name}
+                    width={brand.w}
+                    height={brand.h}
+                    className="h-14 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 sm:h-[4.5rem] lg:h-[5.5rem]"
+                  />
+                </Link>
               </div>
             ))}
           </div>
