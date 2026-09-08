@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { legal } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Americas Food Court",
@@ -18,7 +19,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="mt-2 text-sm text-gray-500">
-            Effective Date: [Insert Date]
+            Effective Date: {legal.effectiveDate}
           </p>
 
           <div className="mt-8 flex flex-col gap-8 text-gray-700">
@@ -217,24 +218,24 @@ export default function PrivacyPolicyPage() {
                 personal information, please contact:
               </p>
               <p className="mt-3 font-medium text-brand-navy">
-                America&apos;s Food Court
+                {legal.companyName}
               </p>
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:privacy@americasfoodcourt.com"
+                  href={`mailto:${legal.privacyEmail}`}
                   className="text-brand-navy underline"
                 >
-                  privacy@americasfoodcourt.com
+                  {legal.privacyEmail}
                 </a>
               </p>
               <p>
                 Website:{" "}
                 <a
-                  href="https://www.americasfoodcourt.com"
+                  href={legal.website}
                   className="text-brand-navy underline"
                 >
-                  www.americasfoodcourt.com
+                  {legal.websiteLabel}
                 </a>
               </p>
             </Section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { legal } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions — Americas Food Court",
@@ -18,7 +19,7 @@ export default function TermsPage() {
             Website Terms &amp; Conditions
           </h1>
           <p className="mt-2 text-sm text-gray-500">
-            Effective Date: [Insert Date]
+            Effective Date: {legal.effectiveDate}
           </p>
 
           <div className="mt-8 flex flex-col gap-8 text-gray-700">
@@ -96,11 +97,10 @@ export default function TermsPage() {
 
             <Section number="3" title="Trademarks">
               <p>
-                America&apos;s Food Court®, One More Slice®, Dog It Up®,
-                Chick Chick Eats®, Sweet Works®, Tu Manera®, and all
-                associated logos, names, slogans, graphics, and proprietary
-                branding are trademarks or service marks owned by
-                America&apos;s Food Court or its affiliated companies.
+                {legal.trademarks.join(", ")} and all associated logos,
+                names, slogans, graphics, and proprietary branding are
+                trademarks or service marks owned by America&apos;s Food Court
+                or its affiliated companies.
               </p>
               <p className="mt-3">
                 Unauthorized use of any trademark is strictly prohibited.
@@ -301,24 +301,24 @@ export default function TermsPage() {
                 please contact:
               </p>
               <p className="mt-3 font-medium text-brand-navy">
-                America&apos;s Food Court
+                {legal.companyName}
               </p>
               <p>
                 Website:{" "}
                 <a
-                  href="https://www.americasfoodcourt.com"
+                  href={legal.website}
                   className="text-brand-navy underline"
                 >
-                  www.americasfoodcourt.com
+                  {legal.websiteLabel}
                 </a>
               </p>
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:legal@americasfoodcourt.com"
+                  href={`mailto:${legal.legalEmail}`}
                   className="text-brand-navy underline"
                 >
-                  legal@americasfoodcourt.com
+                  {legal.legalEmail}
                 </a>
               </p>
             </Section>

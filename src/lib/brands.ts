@@ -80,14 +80,6 @@ export const brands: Brand[] = [
     menuAccentColor: "#aa903d",
   },
   {
-    id: "chickchick",
-    name: "",
-    foodImage: "/images/brands/chick-chick.jpg",
-    category: ["chicken", "chicken-sandwiches"],
-    orderUrl: "/food-menu/chickchick",
-    comingSoon: true,
-  },
-  {
     id: "oneslice",
     name: "One More Slice Pizza",
     logo: "/images/menu/one-more-slice/one-more-slice-header-logo.png",
@@ -118,14 +110,6 @@ export const brands: Brand[] = [
     menuHeroColor: "#fef8e3",
   },
   {
-    id: "empanadas",
-    name: "",
-    foodImage: "/images/brands/empanda.jpg",
-    category: ["empanadas", "mexican"],
-    orderUrl: "/food-menu/empanadas",
-    comingSoon: true,
-  },
-  {
     id: "manvsfries",
     name: "Man vs Fries",
     logo: "/images/brands/manvsfries-logo.png",
@@ -139,22 +123,6 @@ export const brands: Brand[] = [
     menuHeroImageWidth: 0,
     menuHeroImageHeight: 0,
     menuHeroColor: "#ff76b1",
-  },
-  {
-    id: "chickaroo",
-    name: "",
-    foodImage: "/images/brands/chickaroo.jpg",
-    category: ["chicken"],
-    orderUrl: "/food-menu/chickaroo",
-    comingSoon: true,
-  },
-  {
-    id: "sweetwaves",
-    name: "Sweet Waves Kitchen",
-    foodImage: "/images/brands/sweet-waves.jpg",
-    category: ["desserts", "breakfast"],
-    orderUrl: "/food-menu/sweetwaves",
-    comingSoon: true,
   },
 ];
 
