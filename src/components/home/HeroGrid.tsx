@@ -112,8 +112,7 @@ export default function HeroGrid() {
                 images={UP_RIGHT_IMAGES}
                 alt="Eat Like a Beast — MrBeast Burger promo"
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-contain"
-                fit="contain"
+                fit="cover"
                 intervalMs={4500}
               />
             </motion.div>
@@ -128,8 +127,7 @@ export default function HeroGrid() {
                 images={DOWN_RIGHT_IMAGES}
                 alt="It's Burger Day — Big flavor, beast-sized satisfaction"
                 sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-contain"
-                fit="contain"
+                fit="cover"
                 intervalMs={5000}
               />
             </motion.div>
