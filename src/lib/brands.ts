@@ -81,7 +81,7 @@ export const brands: Brand[] = [
   },
   {
     id: "chickchick",
-    name: "Chick Chick Eats",
+    name: "",
     foodImage: "/images/brands/chick-chick.jpg",
     category: ["chicken", "chicken-sandwiches"],
     orderUrl: "/food-menu/chickchick",
@@ -119,7 +119,7 @@ export const brands: Brand[] = [
   },
   {
     id: "empanadas",
-    name: "Empanadas United",
+    name: "",
     foodImage: "/images/brands/empanda.jpg",
     category: ["empanadas", "mexican"],
     orderUrl: "/food-menu/empanadas",
@@ -142,7 +142,7 @@ export const brands: Brand[] = [
   },
   {
     id: "chickaroo",
-    name: "Chickaroo Chicken",
+    name: "",
     foodImage: "/images/brands/chickaroo.jpg",
     category: ["chicken"],
     orderUrl: "/food-menu/chickaroo",
