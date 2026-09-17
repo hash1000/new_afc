@@ -43,7 +43,7 @@ export default function Footer() {
 
             <div className="flex gap-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/americasfoodcourt/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -76,7 +76,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/@americasfoodcourt?_r=1&_t=ZS-99ok24pZDqn"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
