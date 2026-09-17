@@ -34,8 +34,18 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact form request failed");
+      }
+
       setStatus("success");
       setFormData(EMPTY_FORM);
     } catch {
@@ -108,18 +118,19 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
+        aria-busy={status === "loading"}
         className="bg-brand-red w-full rounded-lg py-3 text-sm font-bold text-white transition-colors hover:bg-brand-red/90 disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Submit"}
       </button>
 
       {status === "success" && (
-        <p className="rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+        <p role="status" className="rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
           Thank you! We&apos;ll be in touch soon.
         </p>
       )}
       {status === "error" && (
-        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-brand-red">
+        <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-brand-red">
           Something went wrong. Please try again.
         </p>
       )}

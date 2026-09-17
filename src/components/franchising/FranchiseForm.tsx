@@ -57,8 +57,18 @@ export default function FranchiseForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/franchise", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error("Franchise inquiry request failed");
+      }
+
       setStatus("success");
       setForm(EMPTY_FORM);
     } catch {
@@ -168,18 +178,19 @@ export default function FranchiseForm() {
       <button
         type="submit"
         disabled={status === "loading"}
+        aria-busy={status === "loading"}
         className="bg-brand-red col-span-full mt-2 w-full rounded-2xl py-4 text-sm font-bold text-white transition-colors hover:bg-brand-red/90 disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Request Franchise Information"}
       </button>
 
       {status === "success" && (
-        <p className="col-span-full rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+        <p role="status" className="col-span-full rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
           Thank you! Our franchise development team will be in touch soon.
         </p>
       )}
       {status === "error" && (
-        <p className="text-brand-red col-span-full rounded-xl bg-red-50 px-4 py-3 text-sm font-medium">
+        <p role="alert" className="text-brand-red col-span-full rounded-xl bg-red-50 px-4 py-3 text-sm font-medium">
           Something went wrong. Please try again.
         </p>
       )}
