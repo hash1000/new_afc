@@ -6,10 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiMenu, FiShoppingCart, FiX } from "react-icons/fi";
+import { CART_UPDATED_EVENT, readCart } from "@/lib/cart";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Order Food", href: "/food-menu" },
+  { label: "Locations", href: "/locations" },
   { label: "About us", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Partner with us", href: "/franchising" },
@@ -17,7 +19,19 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const pathname = usePathname();
+  useEffect(() => {
+    const syncCartCount = () =>
+      setCartCount(readCart().reduce((total, item) => total + item.quantity, 0));
+    syncCartCount();
+    window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
+    window.addEventListener("storage", syncCartCount);
+    return () => {
+      window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
+      window.removeEventListener("storage", syncCartCount);
+    };
+  }, []);
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
@@ -35,7 +49,7 @@ export default function Navbar() {
             width={110}
             height={78}
             priority
-            className="h-12 w-auto sm:h-16 lg:h-[4.875rem]"
+            className="h-12 w-auto sm:h-16 lg:h-19.5"
           />
         </Link>
 
@@ -58,11 +72,12 @@ export default function Navbar() {
 
         <Link
           href="/cart"
-          className="bg-brand-red hidden shrink-0 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red/90 xl:inline-flex"
+          aria-label={cartCount > 0 ? `${cartCount} ${cartCount === 1 ? "item" : "items"} in cart` : "View Cart"}
+          className="group relative hidden h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-red text-white transition-colors hover:bg-brand-red/90 xl:inline-flex"
         >
           <FiShoppingCart className="h-4 w-4" aria-hidden="true" />
-          View Cart
-          <span aria-hidden="true">→</span>
+          {cartCount > 0 && <span aria-hidden="true" className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-yellow px-1 text-[10px] font-extrabold text-brand-navy">{cartCount}</span>}
+          <span role="tooltip" className="pointer-events-none absolute top-full right-0 mt-2 whitespace-nowrap rounded-md bg-brand-navy px-2.5 py-1.5 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">{cartCount > 0 ? `${cartCount} ${cartCount === 1 ? "item" : "items"} in cart` : "View Cart"}</span>
         </Link>
 
         <button
@@ -99,11 +114,11 @@ export default function Navbar() {
               <Link
                 href="/cart"
                 onClick={() => setOpen(false)}
-                className="bg-brand-red mt-2 flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-center text-sm font-semibold text-white"
+                aria-label={cartCount > 0 ? `${cartCount} ${cartCount === 1 ? "item" : "items"} in cart` : "View Cart"}
+                className="bg-brand-red relative mt-2 flex h-11 w-11 items-center justify-center self-center rounded-full text-white"
               >
                 <FiShoppingCart className="h-4 w-4" aria-hidden="true" />
-                View Cart
-                <span aria-hidden="true">→</span>
+                {cartCount > 0 && <span aria-hidden="true" className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-yellow px-1 text-[10px] font-extrabold text-brand-navy">{cartCount}</span>}
               </Link>
             </div>
           </motion.div>

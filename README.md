@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Welcome offer QR code
+
+Print a QR code that points to the static URL `https://www.americasfoodcourt.com/offer/welcome10`. The page collects a name and Pakistani phone number, then requests a one-time voucher from the backend. The QR code itself does not need a dynamic service or backend route.
+
+Set `NEXT_PUBLIC_API_URL` to the backend API base URL, such as `https://api.americasfoodcourt.com/api` in production or `http://localhost:8500/api` locally.
+
 ## Getting Started
 
 First, run the development server:

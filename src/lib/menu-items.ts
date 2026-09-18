@@ -17,7 +17,7 @@ export interface MenuSection {
   items: MenuItem[];
 }
 
-export const brandMenus: Record<string, MenuSection[]> = {
+const rawBrandMenus: Record<string, MenuSection[]> = {
   mrbeast: [
     {
       id: "combos",
@@ -920,3 +920,115 @@ export const brandMenus: Record<string, MenuSection[]> = {
   ],
 
 };
+
+const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
+  oneslice: {
+    "cheese-slice": 2.92,
+    "pepperoni-slice": 3.5,
+    "sausage-slice": 3.5,
+    "meat-lover-slice": 4.33,
+    "bbq-chicken-slice": 10,
+    "buffalo-ranch-slice": 10,
+    "chicken-supreme-slice": 3.33,
+    "veggie-slice": 3.17,
+    "egg-cheese-slice": 2.5,
+    "egg-n-sausage-slice": 3,
+    "egg-n-bacon-slice": 3.33,
+    "caramel-apple-slice": 10,
+    "churro-supreme-slice": 10,
+    "chocolate-bliss-slice": 10,
+    "cheesy-garlic-dippers": 10,
+  },
+  mrbeast: {
+    "beast-style-burger-combo": 9.99,
+    "chicken-sandwich-combo": 10,
+    "beast-style": 10,
+    "chandler-style": 9.99,
+    "nolan-style": 11.99,
+    "karls-deluxe": 8.49,
+    "karls-grilled-cheese": 8.49,
+    "crispy-chicken-tender-sandwich": 8.49,
+    "nashville-hot-chicken-tender-sandwich": 8.49,
+    "crinkle-fries": 8.49,
+    "signature-crinkle-fries": 8.49,
+    "beast-style-fries": 8.49,
+    "chocolate-chip-cookie": 10,
+    "canned-soda": 10,
+    "bottled-water": 10,
+  },
+  manvsfries: {
+    "asada-fries": 10,
+    "socal-burrito": 10,
+    "norcal-burrito": 10,
+    "cali-crunch": 10,
+    "cowgirl-burrito": 10,
+    "hella-dilla": 10,
+    "cbr-burrito": 10,
+    "omg-cookies": 10,
+    "man-vs-fried-cheesecake": 10,
+  },
+  dogitup: {
+    "classic-american": 3.49,
+    "nashville-hot": 3.99,
+    "kansas-city-smokehouse": 4.29,
+    "midwest-mac-daddy": 4.29,
+    "texas-chili-cheese": 4.29,
+    "chicago-dog": 4.29,
+    "crinkle-fries": 1.99,
+    "onion-rings": 2.49,
+    frings: 2.49,
+    "mac-n-cheese": 2.49,
+    "loaded-chili-cheese-fries": 3.99,
+    lemonade: 10,
+    "strawberry-lemonade": 10,
+    "cola-fizz": 10,
+    "orange-fizz": 10,
+    "lemon-lime-fizz": 10,
+    "bottled-water": 10,
+  },
+  cpk: {
+    "the-original-bbq-chicken-pizza": 10,
+    "wild-mushroom": 10,
+    "california-veggie": 10,
+    "the-works": 10,
+    "mushroom-pepperoni-sausage": 10,
+    "five-cheese-fresh-tomato": 10,
+    "neapolitan-burrata": 10,
+    pepperoni: 10,
+    hawaiian: 10,
+    margherita: 10,
+    sicilian: 10,
+    "spicy-chipotle-chicken-pizza": 10,
+    "tostada-pizza": 10,
+    "sicilian-2": 10,
+  },
+  cheesecake: {
+    "brownie-crunch-choc-a-lot-cheesecake": 5.99,
+    "original-cheesecake": 5.99,
+    "fresh-strawberry": 5.99,
+    "oreo-dream-extreme-cheesecake": 5.99,
+    "ultimate-red-velvet-cake-cheesecake": 5.99,
+    "reeses-peanut-butter-chocolate-cake-cheesecake": 5.99,
+    "godiva-chocolate-cheesecake": 5.99,
+    "peach-perfect-with-raspberry-drizzle": 5.99,
+    "coconut-cream-pie-cheesecake": 5.99,
+    "adams-peanut-butter-cup-fudge-ripple": 5.99,
+    "godiva-chocolate-cheesecake-2": 5.99,
+  },
+};
+
+/** Client-provided prices, with $10 reserved for items explicitly lacking real pricing. */
+export const brandMenus: Record<string, MenuSection[]> = Object.fromEntries(
+  Object.entries(rawBrandMenus).map(([brandId, sections]) => [
+    brandId,
+    sections.map((section) => ({
+      ...section,
+      items: section.items.map((item) => ({
+        ...item,
+        price:
+          APPROVED_MENU_PRICES[brandId]?.[item.id] ??
+          (item.price && item.price > 0 ? item.price : 10),
+      })),
+    })),
+  ]),
+);

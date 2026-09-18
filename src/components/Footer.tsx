@@ -4,6 +4,7 @@ import Link from "next/link";
 const COMPANY_LINKS = [
   { label: "Franchising", href: "/franchising" },
   { label: "Careers", href: "/careers" },
+  { label: "Locations", href: "/locations" },
   { label: "Contact", href: "/contact" },
 ];
 

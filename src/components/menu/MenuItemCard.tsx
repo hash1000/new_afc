@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Check, ShoppingCart } from "lucide-react";
 import type { MenuItem } from "@/lib/menu-items";
+import { addToCart } from "@/lib/cart";
 import ComingSoonPlaceholder from "./ComingSoonPlaceholder";
 
 export default function MenuItemCard({
@@ -19,6 +21,7 @@ export default function MenuItemCard({
   accentColor?: string;
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
 
   const showMeta = item.price !== undefined || item.rating !== undefined;
 
@@ -100,20 +103,17 @@ export default function MenuItemCard({
         <div className={`flex items-center gap-2 ${showMeta ? "" : "mt-auto"}`}>
           <button
             type="button"
-            className="bg-brand-red flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-[11px] font-semibold whitespace-nowrap text-white transition-colors hover:cursor-pointer hover:bg-brand-red/90 active:bg-brand-red/80 sm:text-xs"
+            disabled={justAdded}
+            onClick={() => {
+              if (justAdded) return;
+              addToCart(item);
+              setJustAdded(true);
+              window.setTimeout(() => setJustAdded(false), 800);
+            }}
+            className="bg-brand-red flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-[11px] font-semibold whitespace-nowrap text-white transition-all hover:cursor-pointer hover:bg-brand-red/90 active:bg-brand-red/80 disabled:cursor-default disabled:opacity-90 sm:text-xs"
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M3 3h2l.4 2M7 13h10l3-8H5.4M7 13L5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H17"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="9" cy="21" r="1" fill="currentColor" />
-              <circle cx="16" cy="21" r="1" fill="currentColor" />
-            </svg>
-            Add to Cart
+            {justAdded ? <Check className="h-4 w-4" strokeWidth={3} aria-hidden="true" /> : <ShoppingCart className="h-4 w-4" aria-hidden="true" />}
+            {justAdded ? "Added" : "Add to Cart"}
           </button>
         </div>
       </div>
