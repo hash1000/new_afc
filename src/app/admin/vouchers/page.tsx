@@ -11,6 +11,7 @@ interface VoucherStatus {
 
 interface LoginResult {
   accessToken: string;
+  user: { role: string };
 }
 
 export default function AdminVouchersPage() {
@@ -41,6 +42,7 @@ export default function AdminVouchersPage() {
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, password }) });
       const result = await readApiResponse<LoginResult>(response);
+      if (!["admin", "super_admin"].includes(result.user.role)) throw new Error("Staff access required.");
       sessionStorage.setItem("afc_admin_token", result.accessToken);
       setToken(result.accessToken);
       setMessage("Signed in. You can now check vouchers.");

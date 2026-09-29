@@ -10,6 +10,7 @@ import { CART_UPDATED_EVENT, readCart } from "@/lib/cart";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
+  { label: "Account", href: "/account" },
   { label: "Order Food", href: "/food-menu" },
   { label: "Locations", href: "/locations" },
   { label: "About us", href: "/about" },
