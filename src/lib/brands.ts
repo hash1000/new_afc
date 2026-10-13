@@ -34,6 +34,33 @@ export interface Brand {
 
 export const brands: Brand[] = [
   {
+    id: "empanadasunited",
+    name: "Empanadas United",
+    logo: "/images/home/logo-empanadasunited.png",
+    foodImage: "/images/home/logo-empanadasunited.png",
+    category: ["empanadas"],
+    orderUrl: "/food-menu/empanadasunited",
+    comingSoon: true,
+  },
+  {
+    id: "tacoteoria",
+    name: "Taco Teoria",
+    logo: "/images/home/logo-tacoteoria.png",
+    foodImage: "/images/home/logo-tacoteoria.png",
+    category: ["mexican"],
+    orderUrl: "/food-menu/tacoteoria",
+    comingSoon: true,
+  },
+  {
+    id: "wrapithabibi",
+    name: "Wrap it Habibi",
+    logo: "/images/home/logo-wrap-it-habibi.png",
+    foodImage: "/images/home/logo-wrap-it-habibi.png",
+    category: [],
+    orderUrl: "/food-menu/wrapithabibi",
+    comingSoon: true,
+  },
+  {
     id: "mrbeast",
     name: "MrBeast Burger",
     logo: "/images/brands/mrbeast-logo.png",
@@ -107,14 +134,14 @@ export const brands: Brand[] = [
     menuHeroImageHeight: 0,
     menuHeroColor: "#f95d0b",
   },
-  {
-    id: "brand1",
-    name: "Upcoming Brand 1",
-    foodImage: "/images/brands/brand1.jpg",
-    category: ["empanadas", "mexican"],
-    orderUrl: "/food-menu/brand1",
-    comingSoon: true,
-  },
+  // {
+  //   id: "brand1",
+  //   name: "Upcoming Brand 1",
+  //   foodImage: "/images/brands/brand1.jpg",
+  //   category: ["empanadas", "mexican"],
+  //   orderUrl: "/food-menu/brand1",
+  //   comingSoon: true,
+  // },
   {
     id: "dogitup",
     name: "Dog It Up",
@@ -145,22 +172,22 @@ export const brands: Brand[] = [
     menuHeroImageHeight: 0,
     menuHeroColor: "#ff76b1",
   },
-  {
-    id: "brand2",
-    name: "Upcoming Brand 2",
-    foodImage: "/images/brands/brand2.jpg",
-    category: ["chicken"],
-    orderUrl: "/food-menu/brand2",
-    comingSoon: true,
-  },
-  {
-    id: "brand3",
-    name: "Upcoming Brand 3",
-    foodImage: "/images/brands/brand3.jpg",
-    category: ["desserts", "breakfast"],
-    orderUrl: "/food-menu/brand3",
-    comingSoon: true,
-  },
+  // {
+  //   id: "brand2",
+  //   name: "Upcoming Brand 2",
+  //   foodImage: "/images/brands/brand2.jpg",
+  //   category: ["chicken"],
+  //   orderUrl: "/food-menu/brand2",
+  //   comingSoon: true,
+  // },
+  // {
+  //   id: "brand3",
+  //   name: "Upcoming Brand 3",
+  //   foodImage: "/images/brands/brand3.jpg",
+  //   category: ["desserts", "breakfast"],
+  //   orderUrl: "/food-menu/brand3",
+  //   comingSoon: true,
+  // },
 ];
 
 export interface Category {

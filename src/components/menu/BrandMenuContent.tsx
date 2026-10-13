@@ -26,10 +26,10 @@ export default function BrandMenuContent({
           Back to all brands
         </Link>
 
-        {brand.comingSoon && sections.length === 0 ? (
+        {sections.length === 0 ? (
           <section className="rounded-2xl border border-black/5 bg-cream px-5 py-10 text-center shadow-sm sm:px-10 sm:py-14">
             <span className="text-brand-red text-xs font-bold tracking-[0.18em] uppercase">New menu in progress</span>
-            <h1 className="font-display text-brand-navy mt-3 text-2xl sm:text-3xl">A fresh menu is on the way</h1>
+            <h1 className="font-display text-brand-navy mt-3 text-2xl sm:text-3xl">{brand.name} menu is coming soon</h1>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-black/60 sm:text-base">
               We are putting the finishing touches on {brand.name}. Check back soon for the full menu and ordering details.
             </p>

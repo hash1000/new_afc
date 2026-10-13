@@ -8,11 +8,20 @@ export default function BrandMenuHero({ brand }: { brand: Brand }) {
       <section className="container-page mx-auto pt-4 sm:pt-8">
         <div className="relative flex min-h-56 flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-brand-red/10 bg-[repeating-linear-gradient(135deg,#fff8ea_0,#fff8ea_14px,#f8edd8_14px,#f8edd8_28px)] px-6 py-8 text-center shadow-sm sm:min-h-64 sm:gap-5">
           <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-brand-yellow/20" aria-hidden="true" />
+          {brand.logo && (
+            <Image
+              src={brand.logo}
+              alt={brand.name}
+              width={brand.logoWidth ?? 256}
+              height={brand.logoHeight ?? 120}
+              className="relative z-10 h-24 w-56 object-contain sm:h-32"
+            />
+          )}
           <span className="relative z-10 max-w-[90%] font-display text-2xl text-brand-navy sm:text-4xl">
             {brand.name}
           </span>
           <div className="relative z-10 flex flex-col items-center gap-1">
-            <span className="font-display text-lg text-brand-red sm:text-2xl">Coming Soon</span>
+            <span className="font-display text-lg text-brand-red sm:text-2xl">This brand’s menu is coming soon</span>
             <p className="max-w-md text-xs text-brand-navy/70 sm:text-sm">
               {brand.name} is preparing something delicious. The full menu will be available here soon.
             </p>

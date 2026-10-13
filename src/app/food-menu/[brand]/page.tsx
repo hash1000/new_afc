@@ -24,7 +24,9 @@ export async function generateMetadata({
 
   return {
     title: `${brand.name} Menu — Americas Food Court`,
-    description: `Browse the full ${brand.name} menu — combos, mains, sides, desserts and beverages.`,
+    description: brand.comingSoon
+      ? `${brand.name} menu is coming soon. Explore our other brands while you wait.`
+      : `Browse the full ${brand.name} menu — combos, mains, sides, desserts and beverages.`,
   };
 }
 
