@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Brand } from "@/lib/brands";
+import type { Brand } from "../../../public/images/home/brands";
 import ComingSoonPlaceholder from "./ComingSoonPlaceholder";
 
 export default function BrandMenuHero({ brand }: { brand: Brand }) {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Brand } from "@/lib/brands";
+import type { Brand } from "../../../public/images/home/brands";
 import type { MenuSection } from "@/lib/menu-items";
 import BrandMenuHero from "./BrandMenuHero";
 import BrandMenuSection from "./BrandMenuSection";

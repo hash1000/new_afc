@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BrandMenuContent from "@/components/menu/BrandMenuContent";
-import { brands } from "@/lib/brands";
+import { brands } from "../../../../public/images/home/brands";
 import { brandMenus } from "@/lib/menu-items";
 
 export function generateStaticParams() {

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { categories } from "@/lib/brands";
+import { categories } from "../../../public/images/home/brands";
 
 export default function CategoryTabs({
   activeCategory,

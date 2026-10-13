@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 
 const BACKGROUNDS = [
   "/images/home/hero-image-1.png",
-  "/images/home/hero-image-2.jpg",
-  "/images/home/hero-image-3.jpg",
-  "/images/home/hero-image-4.jpg",
+  "/images/home/hero-image-2.png",
+  "/images/home/hero-image-3.png",
+  "/images/home/hero-image-4.png",
+  "/images/home/hero-image-5.png",
+  "/images/home/hero-image-6.png",
+  "/images/home/hero-image-7.png",
+  "/images/home/hero-image-8.png",
 ];
 
 export default function HomeHero() {

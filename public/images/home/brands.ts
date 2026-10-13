@@ -134,14 +134,6 @@ export const brands: Brand[] = [
     menuHeroImageHeight: 0,
     menuHeroColor: "#f95d0b",
   },
-  // {
-  //   id: "brand1",
-  //   name: "Upcoming Brand 1",
-  //   foodImage: "/images/brands/brand1.jpg",
-  //   category: ["empanadas", "mexican"],
-  //   orderUrl: "/food-menu/brand1",
-  //   comingSoon: true,
-  // },
   {
     id: "dogitup",
     name: "Dog It Up",
@@ -171,23 +163,7 @@ export const brands: Brand[] = [
     menuHeroImageWidth: 0,
     menuHeroImageHeight: 0,
     menuHeroColor: "#ff76b1",
-  },
-  // {
-  //   id: "brand2",
-  //   name: "Upcoming Brand 2",
-  //   foodImage: "/images/brands/brand2.jpg",
-  //   category: ["chicken"],
-  //   orderUrl: "/food-menu/brand2",
-  //   comingSoon: true,
-  // },
-  // {
-  //   id: "brand3",
-  //   name: "Upcoming Brand 3",
-  //   foodImage: "/images/brands/brand3.jpg",
-  //   category: ["desserts", "breakfast"],
-  //   orderUrl: "/food-menu/brand3",
-  //   comingSoon: true,
-  // },
+  }
 ];
 
 export interface Category {
