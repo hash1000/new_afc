@@ -3,7 +3,7 @@ import type { Brand } from "@/lib/brands";
 import ComingSoonPlaceholder from "./ComingSoonPlaceholder";
 
 export default function BrandMenuHero({ brand }: { brand: Brand }) {
-  if (brand.comingSoon) {
+  if (brand.comingSoon && !brand.menuHeroImage) {
     return (
       <section className="container-page mx-auto pt-4 sm:pt-8">
         <div className="relative flex min-h-56 flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-brand-red/10 bg-[repeating-linear-gradient(135deg,#fff8ea_0,#fff8ea_14px,#f8edd8_14px,#f8edd8_28px)] px-6 py-8 text-center shadow-sm sm:min-h-64 sm:gap-5">

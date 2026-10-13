@@ -17,7 +17,276 @@ export interface MenuSection {
   items: MenuItem[];
 }
 
+// Fry Chicks names, portions, and prices are transcribed from MENU FRI CHICKS.pdf.
+// The repeated tender list is shown once; both Chili/Chilli entries remain as printed.
 const rawBrandMenus: Record<string, MenuSection[]> = {
+  "fry-chicks": [
+    {
+      id: "breakfast",
+      title: "Breakfast Items",
+      items: [
+        {
+          id: "fry-chicks-classic-breakfast-sandwich",
+          name: "Classic Breakfast Sandwich",
+          description: "",
+          image: "/images/menu/fry-chicks/classic-breakfast-sandwich.png",
+          price: 5.99
+        },
+        {
+          id: "fry-chicks-spicy-breakfast-sandwich",
+          name: "Spicy Breakfast Sandwich",
+          description: "",
+          image: "/images/menu/fry-chicks/spicy-breakfast-sandwich.png",
+          price: 5.99
+        },
+        {
+          id: "fry-chicks-sausage-breakfast-sandwich",
+          name: "Sausage Breakfast Sandwich",
+          description: "",
+          image: "/images/menu/fry-chicks/sausage-breakfast-sandwich.png",
+          price: 5.99
+        },
+        {
+          id: "fry-chicks-french-toast-bites",
+          name: "French Toast Bites",
+          description: "",
+          image: "/images/menu/fry-chicks/french-toast-bites.png",
+          price: 4.49
+        },
+        {
+          id: "fry-chicks-hash-brown",
+          name: "Hash Brown",
+          description: "",
+          image: "/images/menu/fry-chicks/hash-brown.png",
+          price: 1.99
+        },
+        {
+          id: "fry-chicks-apple-juice",
+          name: "Apple Juice",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 1.99
+        }
+      ]
+    },
+    {
+      id: "chicken-sandwiches",
+      title: "Chicken Sandwiches",
+      items: [
+        {
+          id: "fry-chicks-classic-chicken",
+          name: "Classic Chicken",
+          description: "",
+          image: "/images/menu/fry-chicks/og-chicken-sandwich.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-spicy-chicken",
+          name: "Spicy Chicken",
+          description: "",
+          image: "/images/menu/fry-chicks/spicy-chicken-sandwich.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-chilli-chicken-crunch",
+          name: "Chilli Chicken Crunch",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-bbq-bacon",
+          name: "BBQ Bacon",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 7.99
+        },
+        {
+          id: "fry-chicks-chicken-bacon-ranch",
+          name: "Chicken Bacon Ranch",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-club-deluxe",
+          name: "Club Deluxe",
+          description: "",
+          image: "/images/menu/fry-chicks/club-deluxe.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-chili-chicken-crunch",
+          name: "Chili Chicken Crunch",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 6.49
+        },
+        {
+          id: "fry-chicks-buffalo-ranch",
+          name: "Buffalo Ranch",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 7.99
+        }
+      ]
+    },
+    {
+      id: "buckets",
+      title: "Buckets",
+      items: [
+        {
+          id: "fry-chicks-28-boneless",
+          name: "28 Boneless",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 1.99,
+          sizeLabel: "28 Pieces"
+        },
+        {
+          id: "fry-chicks-28-bone-in",
+          name: "28 Bone-In",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-wings.png",
+          price: 2.79,
+          sizeLabel: "28 Pieces"
+        },
+        {
+          id: "fry-chicks-42-boneless",
+          name: "42 Boneless",
+          description: "",
+          image: "/images/brands/fry-chicks-logo.png",
+          price: 5.99,
+          sizeLabel: "42 Pieces"
+        },
+        {
+          id: "fry-chicks-42-bone-in",
+          name: "42 Bone-In",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-wings.png",
+          price: 5.99,
+          sizeLabel: "42 Pieces"
+        },
+        {
+          id: "fry-chicks-18-pc-tenders",
+          name: "18 PC Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 0,
+          sizeLabel: "18 Pieces"
+        },
+        {
+          id: "fry-chicks-26-pc-tenders",
+          name: "26 PC Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 5.99,
+          sizeLabel: "26 Pieces"
+        },
+        {
+          id: "fry-chicks-36-pc-nugget",
+          name: "36 PC Nugget",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-nuggets.png",
+          price: 0,
+          sizeLabel: "36 Pieces"
+        }
+      ]
+    },
+    {
+      id: "chicken-sides",
+      title: "Chicken Sides",
+      items: [
+        {
+          id: "fry-chicks-chicken-nuggets-6-pieces",
+          name: "Chicken Nuggets",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-nuggets.png",
+          price: 3.99,
+          sizeLabel: "6 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-nuggets-9-pieces",
+          name: "Chicken Nuggets",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-nuggets.png",
+          price: 5.99,
+          sizeLabel: "9 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-6-pieces",
+          name: "Chicken Wings",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-wings.png",
+          price: 8.49,
+          sizeLabel: "6 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-12-pieces",
+          name: "Chicken Wings",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-wings.png",
+          price: 16.99,
+          sizeLabel: "12 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-18-pieces",
+          name: "Chicken Wings",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-wings.png",
+          price: 24.99,
+          sizeLabel: "18 Pieces"
+        }
+      ]
+    },
+    {
+      id: "chicken-tenders",
+      title: "Chicken Tenders",
+      items: [
+        {
+          id: "fry-chicks-1-tenders",
+          name: "Chicken Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 2.49,
+          sizeLabel: "1 Tender"
+        },
+        {
+          id: "fry-chicks-2-tenders",
+          name: "Chicken Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 4.99,
+          sizeLabel: "2 Tenders"
+        },
+        {
+          id: "fry-chicks-3-tenders",
+          name: "Chicken Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 6.49,
+          sizeLabel: "3 Tenders"
+        },
+        {
+          id: "fry-chicks-4-tenders",
+          name: "Chicken Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 8.99,
+          sizeLabel: "4 Tenders"
+        },
+        {
+          id: "fry-chicks-5-tenders",
+          name: "Chicken Tenders",
+          description: "",
+          image: "/images/menu/fry-chicks/chicken-tenders.png",
+          price: 10.99,
+          sizeLabel: "5 Tenders"
+        }
+      ]
+    }
+  ],
+
   mrbeast: [
     {
       id: "combos",
@@ -922,6 +1191,40 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
 };
 
 const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
+  // Preserve the PDF prices, including its explicitly listed $0.00 buckets.
+  "fry-chicks": {
+    "fry-chicks-classic-breakfast-sandwich": 5.99,
+    "fry-chicks-spicy-breakfast-sandwich": 5.99,
+    "fry-chicks-sausage-breakfast-sandwich": 5.99,
+    "fry-chicks-french-toast-bites": 4.49,
+    "fry-chicks-hash-brown": 1.99,
+    "fry-chicks-apple-juice": 1.99,
+    "fry-chicks-classic-chicken": 6.49,
+    "fry-chicks-spicy-chicken": 6.49,
+    "fry-chicks-chilli-chicken-crunch": 6.49,
+    "fry-chicks-bbq-bacon": 7.99,
+    "fry-chicks-chicken-bacon-ranch": 6.49,
+    "fry-chicks-club-deluxe": 6.49,
+    "fry-chicks-chili-chicken-crunch": 6.49,
+    "fry-chicks-buffalo-ranch": 7.99,
+    "fry-chicks-28-boneless": 1.99,
+    "fry-chicks-28-bone-in": 2.79,
+    "fry-chicks-42-boneless": 5.99,
+    "fry-chicks-42-bone-in": 5.99,
+    "fry-chicks-18-pc-tenders": 0,
+    "fry-chicks-26-pc-tenders": 5.99,
+    "fry-chicks-36-pc-nugget": 0,
+    "fry-chicks-chicken-nuggets-6-pieces": 3.99,
+    "fry-chicks-chicken-nuggets-9-pieces": 5.99,
+    "fry-chicks-chicken-wings-6-pieces": 8.49,
+    "fry-chicks-chicken-wings-12-pieces": 16.99,
+    "fry-chicks-chicken-wings-18-pieces": 24.99,
+    "fry-chicks-1-tenders": 2.49,
+    "fry-chicks-2-tenders": 4.99,
+    "fry-chicks-3-tenders": 6.49,
+    "fry-chicks-4-tenders": 8.99,
+    "fry-chicks-5-tenders": 10.99
+  },
   oneslice: {
     "cheese-slice": 2.92,
     "pepperoni-slice": 3.5,

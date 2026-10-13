@@ -45,3 +45,70 @@ body {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+.home-viewport {
+  --brand-carousel-height: 136px;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .home-viewport {
+    --brand-carousel-height: 152px;
+  }
+}
+
+.home-hero {
+  min-height: max(520px, calc(100vh - var(--brand-carousel-height)));
+  min-height: max(520px, calc(100svh - var(--brand-carousel-height)));
+}
+
+.hero-background {
+  object-position: center 65%;
+}
+
+.hero-shade {
+  background: linear-gradient(180deg, rgb(0 0 0 / 42%), transparent 28%),
+    linear-gradient(90deg, rgb(0 0 0 / 38%), transparent 65%);
+}
+
+.brand-marquee-track {
+  animation: brand-scroll 40s linear infinite;
+}
+
+.brand-marquee:hover .brand-marquee-track,
+.brand-marquee:focus-within .brand-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes brand-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 639px) {
+  .home-hero {
+    align-items: center;
+  }
+
+  .hero-content {
+    padding-block: 96px;
+    padding-inline: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2rem, 9.5vw, 2.75rem);
+  }
+
+  .hero-background {
+    object-position: 65% bottom;
+  }
+
+  .hero-shade {
+    background: linear-gradient(180deg, rgb(0 0 0 / 48%), rgb(0 0 0 / 15%) 55%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee-track { animation: none; }
+  .brand-marquee { overflow-x: auto; }
+  .brand-marquee-track > div[aria-hidden="true"] { display: none; }
+}

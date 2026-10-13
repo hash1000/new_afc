@@ -1,108 +1,31 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const BRANDS = [
-  { name: "MrBeast Burger", href: "/food-menu/mrbeast", src: "/images/home/logo-mrbeast.webp", w: 250, h: 250 },
-  { name: "One More Slice", href: "/food-menu/oneslice", src: "/images/home/logo-oneslice.webp", w: 250, h: 250 },
-  { name: "California Pizza Kitchen", href: "/food-menu/cpk", src: "/images/home/logo-cpk.webp", w: 250, h: 250 },
-  { name: "The Cheesecake Factory Bakery", href: "/food-menu/cheesecake", src: "/images/home/logo-cheesecake.webp", w: 250, h: 250 },
-  { name: "Dog It Up", href: "/food-menu/dogitup", src: "/images/home/logo-dogitup.webp", w: 250, h: 250 },
-  { name: "Man vs Fries", href: "/food-menu/manvsfries", src: "/images/home/logo-manvsfries.webp", w: 250, h: 250 },
-  // { name: "Nathan's Famous", src: "/images/home/logo-nathans.webp", w: 250, h: 250 },
-  // { name: "Philly's Best", src: "/images/home/logo-phillysbest.webp", w: 250, h: 250 },
+  { name: "MrBeast Burger", file: "Mr Beast Burger.png", href: "/food-menu/mrbeast", w: 211, h: 99 },
+  { name: "California Pizza", file: "California Pizza.png", href: "/food-menu/cpk", w: 224, h: 51 },
+  { name: "The Cheesecake Factory Bakery", file: "Cheesecake Factory.png", href: "/food-menu/cheesecake", w: 214, h: 109 },
+  { name: "The Fry Chicks", file: "TFC.png", href: "/food-menu/fry-chicks", w: 202, h: 104 },
+  { name: "One More Slice", file: "One more Slice.png", href: "/food-menu/oneslice", w: 194, h: 101 },
+  { name: "Dog It Up America", file: "Dog it up America.png", href: "/food-menu/dogitup", w: 182, h: 114 },
+  { name: "Man vs Fries", file: "Man vs Fries.png", href: "/food-menu/manvsfries", w: 181, h: 119 },
+  // { name: "Empanadas United", file: "Empanadas United.png", href: "/food-menu", w: 159, h: 122 },
+  { name: "Taco Teoria", file: "Taco Teoria.png", href: "/food-menu", w: 196, h: 99 },
 ];
 
-const MOBILE_VISIBLE = 2;
-const TABLET_VISIBLE = 3;
-const DESKTOP_VISIBLE = 5;
-const AUTO_SCROLL_MS = 3000;
-
 export default function BrandCarousel() {
-  const [offset, setOffset] = useState(0);
-  const [visible, setVisible] = useState(MOBILE_VISIBLE);
-
-  useEffect(() => {
-    const tabletMq = window.matchMedia("(min-width: 640px)");
-    const desktopMq = window.matchMedia("(min-width: 1024px)");
-    const update = () => {
-      setVisible(desktopMq.matches ? DESKTOP_VISIBLE : tabletMq.matches ? TABLET_VISIBLE : MOBILE_VISIBLE);
-    };
-    update();
-    tabletMq.addEventListener("change", update);
-    desktopMq.addEventListener("change", update);
-    return () => {
-      tabletMq.removeEventListener("change", update);
-      desktopMq.removeEventListener("change", update);
-    };
-  }, []);
-
-  const next = () => setOffset((prev) => (prev + 1) % BRANDS.length);
-  const prev = () => setOffset((p) => (p - 1 + BRANDS.length) % BRANDS.length);
-
-  useEffect(() => {
-    const timer = setInterval(next, AUTO_SCROLL_MS);
-    return () => clearInterval(timer);
-  }, []);
-
-  const loopedBrands = [...BRANDS, ...BRANDS];
-  const itemWidthPercent = 100 / visible;
-
   return (
-    <section className="container-page relative z-10 mx-auto w-full overflow-hidden rounded-3xl bg-cream">
-      <div className="flex items-center gap-2 rounded-3xl px-2 py-2 sm:gap-4 sm:px-4 sm:py-2.5 lg:gap-6 lg:px-6">
-        <button
-          type="button"
-          onClick={prev}
-          aria-label="Previous brands"
-            className="border-brand-navy text-brand-navy hover:bg-brand-navy flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors hover:text-white sm:h-10 sm:w-10"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-
-        <div className="w-full overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${offset * itemWidthPercent}%)` }}
-          >
-            {loopedBrands.map((brand, i) => (
-              <div
-                key={`${brand.name}-${i}`}
-                className="flex h-16 shrink-0 items-center justify-center px-1 sm:h-20 sm:px-2 lg:h-24 lg:px-3"
-                style={{ width: `${itemWidthPercent}%` }}
-              >
-                <Link
-                  href={brand.href}
-                  aria-label={`View ${brand.name} menu`}
-                  className="flex h-full w-full items-center justify-center rounded-xl outline-offset-4 transition-colors hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-brand-navy"
-                >
-                  <Image
-                    src={brand.src}
-                    alt={brand.name}
-                    width={brand.w}
-                    height={brand.h}
-                    className="h-14 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 sm:h-[4.5rem] lg:h-[5.5rem]"
-                  />
-                </Link>
-              </div>
+    <section aria-label="Our food brands" className="brand-marquee overflow-hidden bg-cream py-5 sm:py-7">
+      <div className="brand-marquee-track flex w-max">
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1 ? true : undefined}>
+            {BRANDS.map((brand) => (
+              <Link key={brand.name} href={brand.href} tabIndex={copy === 1 ? -1 : undefined} aria-label={`Explore ${brand.name}`} className="flex h-24 w-44 shrink-0 items-center justify-center px-6 outline-offset-[-4px] sm:w-52">
+                <Image src={`/images/brand-logos/${brand.file}`} alt={brand.name} width={brand.w} height={brand.h} className="max-h-20 w-auto max-w-full object-contain" />
+              </Link>
             ))}
           </div>
-        </div>
-
-        <button
-          type="button"
-          onClick={next}
-          aria-label="Next brands"
-          className="border-brand-navy text-brand-navy hover:bg-brand-navy flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors hover:text-white sm:h-10 sm:w-10"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        ))}
       </div>
     </section>
   );

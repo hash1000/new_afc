@@ -42,21 +42,21 @@ export default function BrandGrid({
                 exit={{ opacity: 0, scale: 0.9 }}
                 whileHover={{ scale: 1.015 }}
                 transition={{ duration: 0.3 }}
-                className="relative aspect-[380/195] w-full overflow-hidden rounded-2xl border border-black/5 bg-cream shadow-sm transition-shadow hover:shadow-lg"
+                className={`relative aspect-[380/195] w-full overflow-hidden rounded-2xl border border-black/5 shadow-sm transition-shadow hover:shadow-lg ${brand.id === "fry-chicks" ? "bg-white" : "bg-cream"}`}
               >
                 {brand.comingSoon ? (
-                  <ComingSoonPlaceholder brandName={brand.name} />
+                  <ComingSoonPlaceholder brandName={brand.name} logo={brand.logo} />
                 ) : (
                   <Image
                     src={brand.foodImage}
                     alt={brand.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
+                    className={brand.id === "fry-chicks" ? "object-contain object-right pl-[42%]" : "object-cover"}
                   />
                 )}
                 {!brand.comingSoon && brand.logo && (
-                  <div className="absolute top-5 left-4 w-[55%] max-w-45 sm:top-9">
+                  <div className={`absolute top-5 left-4 max-w-45 sm:top-9 ${brand.id === "fry-chicks" ? "w-[40%]" : "w-[55%]"}`}>
                     <Image
                       src={brand.logo}
                       alt={brand.name}
