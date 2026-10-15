@@ -22,6 +22,31 @@ export default function MenuItemCard({
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
+  const [portion, setPortion] = useState(item.sizeOptions?.[0]?.id ?? "slice");
+
+  const portionOptions = item.sizeOptions ?? (item.pizzaPrice !== undefined
+    ? [
+        { id: "slice", label: "Slice", price: item.price ?? 0 },
+        { id: "pizza", label: "Whole Pizza", price: item.pizzaPrice },
+      ]
+    : []);
+  const selectedOption = portionOptions.find((option) => option.id === portion);
+
+  const selectedItem = portion === "pizza" && item.pizzaPrice !== undefined
+    ? {
+        ...item,
+        id: `${item.id}-whole-pizza`,
+        name: item.name.replace(/Slice/i, "Whole Pizza"),
+        price: item.pizzaPrice,
+      }
+    : selectedOption && item.sizeOptions
+      ? {
+          ...item,
+          id: `${item.id}-${selectedOption.id}`,
+          name: `${item.name} (${selectedOption.label})`,
+          price: selectedOption.price,
+        }
+      : item;
 
   const showMeta = item.price !== undefined || item.rating !== undefined;
 
@@ -81,11 +106,31 @@ export default function MenuItemCard({
           )}
         </div>
 
+        {portionOptions.length > 0 && (
+          <div role="group" aria-label={`Portion for ${item.name}`} className="mt-auto grid grid-cols-2 gap-2 pt-2">
+            {portionOptions.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                aria-pressed={portion === option.id}
+                onClick={() => {
+                  setPortion(option.id);
+                  setJustAdded(false);
+                }}
+                className={`rounded-lg border px-2 py-2 text-xs transition-colors ${portion === option.id ? "border-brand-red bg-brand-red/10 text-brand-red" : "border-black/15 bg-white text-brand-navy hover:border-brand-red/50"}`}
+              >
+                <span className="block">{option.label}</span>
+                <span className="font-bold">${option.price.toFixed(2)}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
         {showMeta && (
           <div className="mt-auto flex items-center justify-between pt-1">
             {item.price !== undefined && (
               <span className="text-brand-navy text-base font-extrabold sm:text-lg">
-                ${item.price.toFixed(2)}
+                ${selectedItem.price?.toFixed(2)}
               </span>
             )}
             {item.rating !== undefined && (
@@ -106,7 +151,7 @@ export default function MenuItemCard({
             disabled={justAdded}
             onClick={() => {
               if (justAdded) return;
-              addToCart(item);
+              addToCart(selectedItem);
               setJustAdded(true);
               window.setTimeout(() => setJustAdded(false), 800);
             }}

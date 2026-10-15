@@ -5,6 +5,10 @@ export interface MenuItem {
   /** Per-item image, overrides the section's shared/fallback image when set. */
   image?: string;
   price?: number;
+  /** Whole-pizza price when the same recipe is also sold by the slice. */
+  pizzaPrice?: number;
+  /** Purchasable portion choices, each with its own price and cart identity. */
+  sizeOptions?: { id: string; label: string; price: number }[];
   rating?: number;
   ratingCount?: string;
   /** Size options badge shown on the card, e.g. "Regular | Large". */
@@ -17,9 +21,107 @@ export interface MenuSection {
   items: MenuItem[];
 }
 
-// Fry Chicks names, portions, and prices are transcribed from MENU FRI CHICKS.pdf.
-// The repeated tender list is shown once; both Chili/Chilli entries remain as printed.
+// Fry Chicks names, portions, and prices follow the supplied menu reference.
+// Both Chili/Chilli entries remain as printed; placeholder copy is replaced with a short description.
 const rawBrandMenus: Record<string, MenuSection[]> = {
+  // Names, descriptions, and prices transcribed from the supplied Wrap it Habibi menu.
+  wrapithabibi: [
+    {
+      id: "shawarmas",
+      title: "Shawarmas",
+      items: [
+        {
+          id: "wrapithabibi-original-chicken-shawarma",
+          name: "Original Chicken Shawarma",
+          description: "Tender chicken, crisp vegetables, garlic sauce, and hummus in pita.",
+          price: 9.99,
+          image: "/images/menu/wrap-it-habibi/chicken-shawarma.png"
+        },
+        {
+          id: "wrapithabibi-original-lamb-shawarma",
+          name: "Original Lamb Shawarma",
+          description: "Succulent lamb, fresh vegetables, garlic sauce, and hummus in pita.",
+          price: 11.49,
+          image: "/images/menu/wrap-it-habibi/lamb-shawarma.png"
+        },
+        {
+          id: "wrapithabibi-special-chicken-shawarma",
+          name: "Special Chicken Shawarma",
+          description: "Chicken, pickled turnip, vegetables, garlic sauce, and hummus in pita.",
+          price: 11.49,
+          image: "/images/menu/wrap-it-habibi/special-chicken-shawarma.png"
+        },
+        {
+          id: "wrapithabibi-special-lamb-shawarma",
+          name: "Special Lamb Shawarma",
+          description: "Lamb, pickled turnip, vegetables, garlic sauce, and hummus in pita.",
+          price: 12.99,
+          image: "/images/menu/wrap-it-habibi/special-lamb-shawarma.png"
+        },
+        {
+          id: "wrapithabibi-cheesy-chicken-shawarma",
+          name: "Cheesy Chicken Shawarma",
+          description: "Chicken, melted mozzarella, vegetables, and creamy garlic sauce in pita.",
+          price: 9.99,
+          image: "/images/menu/wrap-it-habibi/cheesy-chicken-shawarma.png"
+        },
+        {
+          id: "wrapithabibi-cheesy-lamb-shawarma",
+          name: "Cheesy Lamb Shawarma",
+          description: "Lamb, melted mozzarella, vegetables, and creamy garlic sauce in pita.",
+          price: 11.49,
+          image: "/images/menu/wrap-it-habibi/cheese-lamb-shawarma.png"
+        }
+      ]
+    },
+    {
+      id: "sandwiches",
+      title: "Sandwiches",
+      items: [
+        {
+          id: "wrapithabibi-falafel-pita-sandwich",
+          name: "Falafel Pita Sandwich",
+          description: "Crispy falafel, fresh vegetables, hummus, and garlic sauce in pita.",
+          price: 7.99,
+          image: "/images/menu/wrap-it-habibi/falafel-pita-sandwich.png"
+        },
+        {
+          id: "wrapithabibi-veggie-pita-sandwich",
+          name: "Veggie Pita Sandwich",
+          description: "Fresh vegetables, olives, feta, hummus, and garlic sauce in pita.",
+          price: 7.99,
+          image: "/images/menu/wrap-it-habibi/veggie-pita-sandwich.png"
+        }
+      ]
+    },
+    {
+      id: "bowls",
+      title: "Bowls",
+      items: [
+        {
+          id: "wrapithabibi-chicken-shawarma-bowl",
+          name: "Chicken Shawarma Bowl",
+          description: "Chicken shawarma over rice with garlic sauce, hummus, and pita.",
+          price: 13.99,
+          image: "/images/menu/wrap-it-habibi/chicken-shawarma-bowl.png"
+        },
+        {
+          id: "wrapithabibi-lamb-shawarma-bowl",
+          name: "Lamb Shawarma Bowl",
+          description: "Lamb shawarma over rice with garlic sauce, hummus, and pita.",
+          price: 15.49,
+          image: "/images/menu/wrap-it-habibi/lamb-shawarma-bowl.png"
+        },
+        {
+          id: "wrapithabibi-falafel-bowl",
+          name: "Falafel Bowl",
+          description: "Crispy falafel over rice with garlic sauce, hummus, and pita.",
+          price: 14.99,
+          image: "/images/menu/wrap-it-habibi/falafel-bowl.png"
+        }
+      ]
+    }
+  ],
   "fry-chicks": [
     {
       id: "breakfast",
@@ -28,44 +130,130 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "fry-chicks-classic-breakfast-sandwich",
           name: "Classic Breakfast Sandwich",
-          description: "",
-          image: "/images/menu/fry-chicks/classic-breakfast-sandwich.png",
+          description: "Egg, bacon, cheddar sauce, and Classic sauce in English muffin.",
+          image: "/images/menu/fry-chicks/classic-or-spicy-breakfasy-sandwich.png",
           price: 5.99
         },
         {
           id: "fry-chicks-spicy-breakfast-sandwich",
           name: "Spicy Breakfast Sandwich",
-          description: "",
-          image: "/images/menu/fry-chicks/spicy-breakfast-sandwich.png",
+          description: "Egg, bacon, cheddar sauce, and spicy sauce in English muffin.",
+          image: "/images/menu/fry-chicks/classic-or-spicy-breakfasy-sandwich.png",
           price: 5.99
         },
         {
           id: "fry-chicks-sausage-breakfast-sandwich",
           name: "Sausage Breakfast Sandwich",
-          description: "",
+          description: "Sausage, egg, and cheddar sauce in croissant or English muffin.",
           image: "/images/menu/fry-chicks/sausage-breakfast-sandwich.png",
           price: 5.99
         },
         {
           id: "fry-chicks-french-toast-bites",
-          name: "French Toast Bites",
-          description: "",
-          image: "/images/menu/fry-chicks/french-toast-bites.png",
+          name: "French Toast Sticks",
+          description: "Crispy French toast sticks with powdered sugar and maple syrup.",
+          image: "/images/menu/fry-chicks/french-toast-sticks---5.png",
           price: 4.49
         },
         {
           id: "fry-chicks-hash-brown",
           name: "Hash Brown",
-          description: "",
+          description: "Golden potato hash browns with crispy edges and soft centers.",
           image: "/images/menu/fry-chicks/hash-brown.png",
           price: 1.99
         },
         {
           id: "fry-chicks-apple-juice",
           name: "Apple Juice",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Pure apple juice poured over ice for crisp, refreshing sweetness.",
+          image: "/images/menu/fry-chicks/apple-juice.png",
           price: 1.99
+        }
+      ]
+    },
+    {
+      id: "chicken-sides",
+      title: "Chicken Sides",
+      items: [
+        {
+          id: "fry-chicks-chicken-nuggets-6-pieces",
+          name: "Chicken Nuggets",
+          description: "Golden chicken nuggets with crispy coatings and tender centers.",
+          image: "/images/menu/fry-chicks/chicken-nuggets.png",
+          price: 4.49,
+          sizeLabel: "6 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-nuggets-12-pieces",
+          name: "Chicken Nuggets",
+          description: "Golden chicken nuggets with crispy coatings and tender centers.",
+          image: "/images/menu/fry-chicks/12-nuggets.png",
+          price: 5.99,
+          sizeLabel: "12 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-6-pieces",
+          name: "Chicken Wings",
+          description: "Fried chicken wings with crispy skin and juicy meat.",
+          image: "/images/menu/fry-chicks/6-wings.png",
+          price: 8.99,
+          sizeLabel: "6 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-12-pieces",
+          name: "Chicken Wings",
+          description: "Fried chicken wings with crispy skin and juicy meat.",
+          image: "/images/menu/fry-chicks/6-wings.png",
+          price: 17.49,
+          sizeLabel: "12 Pieces"
+        },
+        {
+          id: "fry-chicks-chicken-wings-18-pieces",
+          name: "Chicken Wings",
+          description: "Fried chicken wings with crispy skin and juicy meat.",
+          image: "/images/menu/fry-chicks/18-wings.png",
+          price: 24.99,
+          sizeLabel: "18 Pieces"
+        },
+        {
+          id: "fry-chicks-1-tenders",
+          name: "Chicken Tenders",
+          description: "Golden chicken tenders with crispy coating and juicy center.",
+          image: "/images/menu/fry-chicks/1-tender.png",
+          price: 5.49,
+          sizeLabel: "1 Tender"
+        },
+        {
+          id: "fry-chicks-2-tenders",
+          name: "Chicken Tenders",
+          description: "Golden chicken tenders with crispy coating and juicy center.",
+          image: "/images/menu/fry-chicks/2-tender.png",
+          price: 6.99,
+          sizeLabel: "2 Tenders"
+        },
+        {
+          id: "fry-chicks-3-tenders",
+          name: "Chicken Tenders",
+          description: "Golden chicken tenders with crispy coating and juicy center.",
+          image: "/images/menu/fry-chicks/3-tender.png",
+          price: 8.49,
+          sizeLabel: "3 Tenders"
+        },
+        {
+          id: "fry-chicks-4-tenders",
+          name: "Chicken Tenders",
+          description: "Golden chicken tenders with crispy coating and juicy center.",
+          image: "/images/menu/fry-chicks/4-tender.png",
+          price: 6.99,
+          sizeLabel: "4 Tenders"
+        },
+        {
+          id: "fry-chicks-5-tenders",
+          name: "Chicken Tenders",
+          description: "Golden chicken tenders with crispy coating and juicy center.",
+          image: "/images/menu/fry-chicks/5-tender.png",
+          price: 8.49,
+          sizeLabel: "5 Tenders"
         }
       ]
     },
@@ -76,57 +264,57 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "fry-chicks-classic-chicken",
           name: "Classic Chicken",
-          description: "",
-          image: "/images/menu/fry-chicks/og-chicken-sandwich.png",
+          description: "Crispy chicken, lettuce, cheese, pickles, and savory sauce in brioche.",
+          image: "/images/menu/fry-chicks/classic-crispy-chicken-sandwich.png",
           price: 6.49
         },
         {
           id: "fry-chicks-spicy-chicken",
           name: "Spicy Chicken",
-          description: "",
-          image: "/images/menu/fry-chicks/spicy-chicken-sandwich.png",
+          description: "Crispy chicken, cheese, lettuce, jalapeños, and spicy sauce in brioche.",
+          image: "/images/menu/fry-chicks/premium-crispy-chicken-sandwich-with-jalapenos.png",
           price: 6.49
         },
         {
           id: "fry-chicks-chilli-chicken-crunch",
           name: "Chilli Chicken Crunch",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy chicken, lettuce, and cheese with jalapeños or tangy pickles.",
+          image: "/images/menu/fry-chicks/chili-chicken-crunch-sandwich.png",
           price: 6.49
         },
         {
           id: "fry-chicks-bbq-bacon",
-          name: "BBQ Bacon",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          name: "BBQ Bacon Ranch",
+          description: "Crispy chicken, bacon, cheese, lettuce, and cool ranch in brioche.",
+          image: "/images/menu/fry-chicks/crispy-bbq-bacon-chicken-sandwich.png",
           price: 7.99
         },
         {
           id: "fry-chicks-chicken-bacon-ranch",
           name: "Chicken Bacon Ranch",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy chicken with bacon and ranch.",
+          image: "/images/menu/fry-chicks/crispy-bacon-ranch-chicken-sandwich.png",
           price: 6.49
         },
         {
           id: "fry-chicks-club-deluxe",
           name: "Club Deluxe",
-          description: "",
-          image: "/images/menu/fry-chicks/club-deluxe.png",
+          description: "Crispy chicken, bacon, lettuce, tomato, cheese, and sauce in brioche.",
+          image: "/images/menu/fry-chicks/club-deluxe-crispy-chicken-sandwich.png",
           price: 6.49
         },
         {
           id: "fry-chicks-chili-chicken-crunch",
           name: "Chili Chicken Crunch",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy chicken, bacon, lettuce, cheese, and sauce in soft brioche.",
+          image: "/images/menu/fry-chicks/chili-chicken-crunch-sandwich.png",
           price: 6.49
         },
         {
           id: "fry-chicks-buffalo-ranch",
           name: "Buffalo Ranch",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy chicken, lettuce, cheese, Buffalo ranch, and pickles or jalapeños.",
+          image: "/images/menu/fry-chicks/crispy-buffalo-ranch-chicken-sandwich.png",
           price: 7.99
         }
       ]
@@ -138,39 +326,39 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "fry-chicks-28-boneless",
           name: "28 Boneless",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy boneless chicken pieces with tender, juicy meat inside.",
+          image: "/images/menu/fry-chicks/boneless-bucket.png",
           price: 1.99,
           sizeLabel: "28 Pieces"
         },
         {
           id: "fry-chicks-28-bone-in",
           name: "28 Bone-In",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-wings.png",
+          description: "Crispy chicken pieces with juicy meat on the bone.",
+          image: "/images/menu/fry-chicks/bone-in-bucket.png",
           price: 2.79,
           sizeLabel: "28 Pieces"
         },
         {
           id: "fry-chicks-42-boneless",
           name: "42 Boneless",
-          description: "",
-          image: "/images/brands/fry-chicks-logo.png",
+          description: "Crispy boneless chicken pieces with tender, juicy meat inside.",
+          image: "/images/menu/fry-chicks/boneless-bucket.png",
           price: 5.99,
           sizeLabel: "42 Pieces"
         },
         {
           id: "fry-chicks-42-bone-in",
           name: "42 Bone-In",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-wings.png",
+          description: "Crispy chicken pieces with juicy meat on the bone.",
+          image: "/images/menu/fry-chicks/bone-in-bucket.png",
           price: 5.99,
           sizeLabel: "42 Pieces"
         },
         {
           id: "fry-chicks-18-pc-tenders",
           name: "18 PC Tenders",
-          description: "",
+          description: "Golden chicken tenders with crispy coatings and tender centers.",
           image: "/images/menu/fry-chicks/chicken-tenders.png",
           price: 0,
           sizeLabel: "18 Pieces"
@@ -178,7 +366,7 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "fry-chicks-26-pc-tenders",
           name: "26 PC Tenders",
-          description: "",
+          description: "Golden chicken tenders with crispy coatings and tender centers.",
           image: "/images/menu/fry-chicks/chicken-tenders.png",
           price: 5.99,
           sizeLabel: "26 Pieces"
@@ -186,102 +374,10 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "fry-chicks-36-pc-nugget",
           name: "36 PC Nugget",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-nuggets.png",
+          description: "Golden chicken nuggets with crispy coatings and tender centers.",
+          image: "/images/menu/fry-chicks/nuggets-bucket.png",
           price: 0,
           sizeLabel: "36 Pieces"
-        }
-      ]
-    },
-    {
-      id: "chicken-sides",
-      title: "Chicken Sides",
-      items: [
-        {
-          id: "fry-chicks-chicken-nuggets-6-pieces",
-          name: "Chicken Nuggets",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-nuggets.png",
-          price: 3.99,
-          sizeLabel: "6 Pieces"
-        },
-        {
-          id: "fry-chicks-chicken-nuggets-9-pieces",
-          name: "Chicken Nuggets",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-nuggets.png",
-          price: 5.99,
-          sizeLabel: "9 Pieces"
-        },
-        {
-          id: "fry-chicks-chicken-wings-6-pieces",
-          name: "Chicken Wings",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-wings.png",
-          price: 8.49,
-          sizeLabel: "6 Pieces"
-        },
-        {
-          id: "fry-chicks-chicken-wings-12-pieces",
-          name: "Chicken Wings",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-wings.png",
-          price: 16.99,
-          sizeLabel: "12 Pieces"
-        },
-        {
-          id: "fry-chicks-chicken-wings-18-pieces",
-          name: "Chicken Wings",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-wings.png",
-          price: 24.99,
-          sizeLabel: "18 Pieces"
-        }
-      ]
-    },
-    {
-      id: "chicken-tenders",
-      title: "Chicken Tenders",
-      items: [
-        {
-          id: "fry-chicks-1-tenders",
-          name: "Chicken Tenders",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-tenders.png",
-          price: 2.49,
-          sizeLabel: "1 Tender"
-        },
-        {
-          id: "fry-chicks-2-tenders",
-          name: "Chicken Tenders",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-tenders.png",
-          price: 4.99,
-          sizeLabel: "2 Tenders"
-        },
-        {
-          id: "fry-chicks-3-tenders",
-          name: "Chicken Tenders",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-tenders.png",
-          price: 6.49,
-          sizeLabel: "3 Tenders"
-        },
-        {
-          id: "fry-chicks-4-tenders",
-          name: "Chicken Tenders",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-tenders.png",
-          price: 8.99,
-          sizeLabel: "4 Tenders"
-        },
-        {
-          id: "fry-chicks-5-tenders",
-          name: "Chicken Tenders",
-          description: "",
-          image: "/images/menu/fry-chicks/chicken-tenders.png",
-          price: 10.99,
-          sizeLabel: "5 Tenders"
         }
       ]
     }
@@ -469,6 +565,7 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
     },
   ],
 
+  // California Pizza Kitchen content follows the supplied eight-item menu.
   cpk: [
     {
       id: "cpk-original-pizza",
@@ -476,262 +573,107 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
       items: [
         {
           id: "the-original-bbq-chicken-pizza",
-          name: "The Original BBQ Chicken Pizza",
-          description:
-            "Created Here In 1985. Our Legendary BBQ Sauce, Grilled Chicken, Smoked Gouda, Red Onions, And Fresh Cilantro Transform This Original To Iconic.",
-          image: "/images/menu/california-pizza/the-original-bbq-chicken-pizza.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "wild-mushroom",
-          name: "Wild Mushroom",
-          description:
-            "Shaved Cremini Mushrooms, Extra Virgin Olive Oil, Fresh Garlic, With Romano & Mozzarella, Slivered Scallions, And Cracked Black",
-          image: "/images/menu/california-pizza/wild-mushroom.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "california-veggie",
-          name: "California Veggie",
-          description:
-            "Broccolini, Grilled Zucchini, Shaved Cremini Mushrooms, Roasted Cherry Tomatoes, Corn, Red Onions, And Mozzarella.",
-          image: "/images/menu/california-pizza/california-veggie.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
-    {
-      id: "classic-pizzas",
-      title: "Classic Pizzas",
-      items: [
-        {
-          id: "the-works",
-          name: "The Works",
-          description:
-            "Spicy Italian Sausage, Rustic Pepperoni, Cremini Mushrooms, Mozzarella, Red Onions, Green Peppers, Olives, And Wild Greek Oregano.",
-          image: "/images/menu/california-pizza/the-works.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "mushroom-pepperoni-sausage",
-          name: "Mushroom Pepperoni Sausage",
-          description:
-            "Cremini Mushrooms, Rustic Pepperoni, Spicy Italian Sausage, Fresh Torn Basil, Mozzarella And Wild Greek Oregano.",
-          image: "/images/menu/california-pizza/mushroom-pepperoni-sausage.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "five-cheese-fresh-tomato",
-          name: "Five Cheese + Fresh Tomato",
-          description: "Fresh And Traditional Mozzarella, Monterey Jack, Smoked Gouda, And Romano With Tomato And Fresh Basil.",
-          image: "/images/menu/california-pizza/five-cheese-fresh-tomato.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "neapolitan-burrata",
-          name: "Neapolitan Burrata",
-          description:
-            "Our Housemade Neapolitan Pizza Sauce, Slow-Roasted Cherry Tomatoes, And Parmesan with Creamy Burrata, Extra Virgin Olive Oil, And Fresh Basil.",
-          image: "/images/menu/california-pizza/neapolitan-burrata.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          name: "BBQ Chicken",
+          description: "Grilled chicken, smoky Gouda, red onions, cilantro, and BBQ sauce.",
+          price: 19.69,
+          image: "/images/menu/california-pizza/the-original-bbq-chicken-pizza.jpg"
         },
         {
           id: "pepperoni",
           name: "Pepperoni",
-          description: "Rustic And Spicy Pepperoni With Fresh Mozzarella And Wild Greek Oregano.",
-          image: "/images/menu/california-pizza/pepperoni.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          description: "Spicy rustic pepperoni with fresh mozzarella and wild Greek oregano.",
+          price: 19.69,
+          image: "/images/menu/california-pizza/pepperoni.jpg"
         },
         {
-          id: "hawaiian",
-          name: "Hawaiian",
-          description: "Fresh Pineapple, Applewood Smoked Ham, And Slivered Scallions.",
-          image: "/images/menu/california-pizza/hawaiian.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          id: "mupesa",
+          name: "Mupesa",
+          description: "Broccolini, zucchini, mushrooms, roasted tomatoes, corn, onions, and melted mozzarella.",
+          price: 20.69,
+          image: "/images/menu/california-pizza/california-veggie.jpg"
+        },
+        {
+          id: "traditional-cheese",
+          name: "Traditional Cheese",
+          description: "Mozzarella pizza topped with broccolini, zucchini, mushrooms, tomatoes, and corn.",
+          price: 18.69,
+          image: "/images/menu/california-pizza/california-logo.png"
+        },
+        {
+          id: "wild-mushroom",
+          name: "Wild Mushroom",
+          description: "Cremini mushrooms, garlic, Romano, mozzarella, and scallions with olive oil.",
+          price: 20.19,
+          image: "/images/menu/california-pizza/wild-mushroom.jpg"
         },
         {
           id: "margherita",
           name: "Margherita",
-          description: "Italian Tomatoes With Fresh Mozzarella, Fresh Basil, And Parmesan. Made Best On Crispy Thin Crust.",
-          image: "/images/menu/california-pizza/margherita.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
-    {
-      id: "globally-inspired",
-      title: "Globally Inspired",
-      items: [
-        {
-          id: "sicilian",
-          name: "Sicilian",
-          description:
-            "Spicy Marinara, Italian Sausage, Capicola Ham, Pepperoni, Mozzarella, Shaved Parmesan, Fresh Basil, And Wild Greek Oregano. Made Best On Crispy Thin Crust.",
-          image: "/images/menu/california-pizza/sicilian.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          description: "Italian tomatoes, fresh mozzarella, basil, and Parmesan for classic flavor.",
+          price: 17.69,
+          image: "/images/menu/california-pizza/margherita.jpg"
         },
         {
-          id: "spicy-chipotle-chicken-pizza",
-          name: "Spicy Chipotle Chicken Pizza",
-          description:
-            "Chipotle Adobo Sauce, Grilled Chicken, Shaved Poblanos Queso Quesadilla And Monterey Jack Cheeses With Housemade Roasted Corn & Black Bean Salsa, Fresh Cilantro, And Tangy Lime Crema.",
-          image: "/images/menu/california-pizza/spicy-chipotle-chicken-pizza.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          id: "hawaiian",
+          name: "Hawaiian",
+          description: "Fresh pineapple, applewood smoked ham, and scallions on golden crust.",
+          price: 20.69,
+          image: "/images/menu/california-pizza/hawaiian.jpg"
         },
         {
-          id: "tostada-pizza",
-          name: "Tostada Pizza",
-          description:
-            "Crisp Lettuce, Tortilla Strips, Scallions, Housemade Herb Ranch, And Roasted Tomato Salsa Top This Crispy Thin Crust With Layers Of Black Beans, Queso Quesadilla And Monterey Jack Cheeses.",
-          image: "/images/menu/california-pizza/tostada-pizza.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "sicilian-2",
-          name: "Sicilian",
-          description:
-            "Spicy Marinara, Italian Sausage, Capicola Ham, Pepperoni, Mozzarella, Shaved Parmesan, Fresh Basil, And Wild Greek Oregano. Made Best On Crispy Thin Crust.",
-          image: "/images/menu/california-pizza/sicilian1.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
+          id: "the-works",
+          name: "The Works",
+          description: "Italian sausage, pepperoni, mushrooms, mozzarella, onions, peppers, olives, and oregano.",
+          price: 20.69,
+          image: "/images/menu/california-pizza/the-works.jpg"
+        }
+      ]
+    }
   ],
 
+  // Cheesecake Factory Bakery content follows the supplied five-dessert menu.
   cheesecake: [
     {
       id: "desserts",
       title: "Desserts",
       items: [
         {
-          id: "brownie-crunch-choc-a-lot-cheesecake",
-          name: "Brownie Crunch Choc-A-Lot Cheesecake",
-          description: "Milk and White Chocolate Marbled Cheesecake on a Crunchy Toffee Brownie",
-          image: "/images/menu/chees-cake/Browniecrunch-choc-a-Lot-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          id: "godiva-chocolate-cheesecake",
+          name: "Cheesecake Chocolate Double Godiva",
+          description: "Flourless Godiva cake layered with chocolate cheesecake and silky mousse.",
+          image: "/images/menu/chees-cake/godiva-chocolate-cheesecake.jpg",
+          price: 11.95
         },
         {
-          id: "original-cheesecake",
-          name: "Original",
-          description: "The One that Started it All! Our Famous Creamy Cheesecake with a Graham Cracker Crust and Sour Cream Topping",
-          image: "/images/menu/chees-cake/Cheesecake-original.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          id: "cheesecake-mousse-tuxedo",
+          name: "Cheesecake Mousse Tuxedo",
+          description: "Fudge cake, chocolate cheesecake, vanilla mascarpone mousse, and rich chocolate.",
+          image: "/images/menu/chees-cake/cheescake-logo.png",
+          price: 11.95
+        },
+        {
+          id: "bananas-foster-cheesecake",
+          name: "Bananas Foster Cheesecake",
+          description: "Creamy banana cheesecake topped with Bavarian cream and fresh banana.",
+          image: "/images/menu/chees-cake/cheescake-logo.png",
+          price: 11.95
         },
         {
           id: "fresh-strawberry",
-          name: "Fresh Strawberry",
-          description: "The Original Topped with Glazed Fresh Strawberries. Our Most Popular Flavor for over 45 Years!",
+          name: "Cheesecake Strawberry Wild & Cream",
+          description: "Original cheesecake topped with glazed fresh strawberries for fruity indulgence.",
           image: "/images/menu/chees-cake/fresh-strawberry.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 11.95
         },
         {
-          id: "oreo-dream-extreme-cheesecake",
-          name: "Oreo® Dream Extreme Cheesecake",
-          description: "Creamy Cheesecake Layered with Oreo® Cookies, Topped with Oreo® Cookie Mousse and Chocolate Icing",
-          image: "/images/menu/chees-cake/oreo-dream-extreme-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "ultimate-red-velvet-cake-cheesecake",
-          name: "Ultimate Red Velvet Cake Cheesecake™",
-          description: "Layers of Red Velvet Cake and Cheesecake Covered in Cream Cheese Frosting. Finished with White Chocolate",
-          image: "/images/menu/chees-cake/ultimate-red-velvet-cake-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "reeses-peanut-butter-chocolate-cake-cheesecake",
-          name: "Reese's® Peanut Butter Chocolate Cake Cheesecake",
-          description: "Reese's® Peanut Butter Cups in Our Original Cheesecake with Layers of Delicious Fudge Cake and Caramel",
-          image: "/images/menu/chees-cake/reese’s-peanut Butter-chocolate-cake-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "godiva-chocolate-cheesecake",
-          name: "Godiva® Chocolate Cheesecake",
-          description: "Flourless Godiva® Chocolate Cake, Topped with Godiva® Chocolate Cheesecake and Chocolate Mousse",
-          image: "/images/menu/chees-cake/godiva-chocolate-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "peach-perfect-with-raspberry-drizzle",
-          name: "Peach Perfect with Raspberry Drizzle",
-          description: "Peach Cheesecake Swirled with Peaches, Finished with Raspberry Sauce",
-          image: "/images/menu/chees-cake/peach-perfect-with-raspberry-drizzle.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "coconut-cream-pie-cheesecake",
-          name: "Coconut Cream Pie Cheesecake",
-          description: "Coconut Cheesecake, Vanilla Custard and a Layer of Chocolate all on a Coconut Macaroon Crust",
-          image: "/images/menu/chees-cake/coconut-cream-pie-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "adams-peanut-butter-cup-fudge-ripple",
-          name: "Adam's Peanut Butter Cup Fudge Ripple",
-          description: "Creamy Cheesecake Swirled with Caramel, Peanut Butter, Butterfingers® and Reese's Peanut Butter Cups",
-          image: "/images/menu/chees-cake/adam’s-peanut-butter-cup-fudge-ripple.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "godiva-chocolate-cheesecake-2",
-          name: "Godiva® Chocolate Cheesecake",
-          description: "Flourless Godiva® Chocolate Cake, Topped with Godiva® Chocolate Cheesecake and Chocolate Mousse",
-          image: "/images/menu/chees-cake/godiva-cream-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
+          id: "original-cheesecake",
+          name: "Cheesecake Original",
+          description: "Creamy cheesecake with graham cracker crust and sour cream topping.",
+          image: "/images/menu/chees-cake/Cheesecake-original.jpg",
+          price: 9.95
+        }
+      ]
+    }
   ],
 
   oneslice: [
@@ -742,76 +684,116 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "cheese-slice",
           name: "Cheese Slice",
-          description: "Melty five-cheese blend on our signature sauce and golden crust.",
+          description: "Five melted cheeses, signature sauce, and a golden crust.",
           image: "/images/menu/one-more-slice/cheese-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.49,
+          pizzaPrice: 15.49
         },
         {
           id: "pepperoni-slice",
           name: "Pepperoni Slice",
-          description: "Loaded edge-to-edge with crispy pepperoni over melted five-cheese blend.",
+          description: "Crispy pepperoni layered over our delicious blend of five cheeses.",
           image: "/images/menu/one-more-slice/pepperoni-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49,
+          pizzaPrice: 20.99
+        },
+        {
+          id: "pepperoni-slice-halal",
+          name: "Pepperoni Slice (Halal)",
+          description: "Crispy halal pepperoni layered over our blend of five cheeses.",
+          image: "/images/menu/one-more-slice/pepperoni-slice.jpg",
+          price: 4.49,
+          pizzaPrice: 21.99
         },
         {
           id: "sausage-slice",
           name: "Sausage Slice",
-          description: "Savory Italian sausage crumbles over rich sauce and melted cheese.",
+          description: "Savory Italian sausage crumbles with rich sauce and melted cheese.",
           image: "/images/menu/one-more-slice/sausage-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49,
+          pizzaPrice: 20.99
+        },
+        {
+          id: "sausage-slice-halal",
+          name: "Sausage Slice (Halal)",
+          description: "Halal Italian sausage crumbles with rich sauce and melted cheese.",
+          image: "/images/menu/one-more-slice/sausage-slice.jpg",
+          price: 4.49,
+          pizzaPrice: 21.99
         },
         {
           id: "meat-lover-slice",
           name: "Meat Lover Slice",
-          description: "Pepperoni, Italian sausage, and smoky bacon piled on melted five-cheese blend.",
+          description: "Pepperoni, Italian sausage, smoky bacon, and five delicious melted cheeses.",
           image: "/images/menu/one-more-slice/meat-lover-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 5.49,
+          pizzaPrice: 25.99
+        },
+        {
+          id: "meat-lover-slice-halal",
+          name: "Meat Lover Slice (Halal)",
+          description: "Halal pepperoni, sausage, and smoky bacon over five melted cheeses.",
+          image: "/images/menu/one-more-slice/meat-lover-slice.jpg",
+          price: 5.49,
+          pizzaPrice: 26.99
         },
         {
           id: "bbq-chicken-slice",
           name: "BBQ Chicken Slice",
-          description: "Grilled chicken and red onions on sweet & smoky BBQ sauce.",
+          description: "Grilled chicken and red onions with sweet, smoky barbecue sauce.",
           image: "/images/menu/one-more-slice/bbq-chicken-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49,
+          pizzaPrice: 20.99
+        },
+        {
+          id: "bbq-chicken-slice-halal",
+          name: "BBQ Chicken Slice (Halal)",
+          description: "Grilled halal chicken, red onions, and a sweet, smoky barbecue sauce.",
+          image: "/images/menu/one-more-slice/bbq-chicken-slice.jpg",
+          price: 5.49,
+          pizzaPrice: 21.99
         },
         {
           id: "buffalo-ranch-slice",
           name: "Buffalo Ranch Slice",
-          description: "Grilled chicken on spicy buffalo sauce, finished with a cool ranch drizzle.",
+          description: "Grilled chicken, spicy buffalo sauce, and a cool ranch drizzle.",
           image: "/images/menu/one-more-slice/buffalo-ranch-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49,
+          pizzaPrice: 20.99
+        },
+        {
+          id: "buffalo-ranch-slice-halal",
+          name: "Buffalo Ranch Slice (Halal)",
+          description: "Grilled halal chicken, spicy buffalo sauce, and a cool ranch drizzle.",
+          image: "/images/menu/one-more-slice/buffalo-ranch-slice.jpg",
+          price: 5.49,
+          pizzaPrice: 21.99
         },
         {
           id: "chicken-supreme-slice",
           name: "Chicken Supreme Slice",
-          description: "Grilled chicken, mushrooms, bell peppers, and red onions on classic sauce.",
+          description: "Grilled chicken, mushrooms, bell peppers, red onions, and classic sauce.",
           image: "/images/menu/one-more-slice/chicken-supreme-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.33,
+          pizzaPrice: 19.99
+        },
+        {
+          id: "chicken-supreme-slice-halal",
+          name: "Chicken Supreme Slice (Halal)",
+          description: "Halal chicken, mushrooms, bell peppers, red onions, and classic sauce.",
+          image: "/images/menu/one-more-slice/chicken-supreme-slice.jpg",
+          price: 4.49,
+          pizzaPrice: 20.99
         },
         {
           id: "veggie-slice",
           name: "Veggie Slice",
-          description: "Red onions, green bell peppers, and mushrooms over bubbling cheese.",
+          description: "Colorful vegetables and melted cheese atop a delicious golden crust.",
           image: "/images/menu/one-more-slice/veggie-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
+          price: 5.49,
+          pizzaPrice: 21.99
+        }
+      ]
     },
     {
       id: "breakfast-slices",
@@ -820,31 +802,44 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "egg-cheese-slice",
           name: "Egg & Cheese Slice",
-          description: "Fluffy scrambled eggs over creamy cheddar sauce and five-cheese blend.",
+          description: "Fluffy scrambled eggs, creamy cheddar sauce, and five melted cheeses.",
           image: "/images/menu/one-more-slice/egg&cheese-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.49,
+          pizzaPrice: 14.99
         },
         {
           id: "egg-n-sausage-slice",
           name: "Egg N Sausage Slice",
           description: "Scrambled eggs and savory sausage crumbles over creamy cheddar sauce.",
           image: "/images/menu/one-more-slice/egg-sausage-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.99,
+          pizzaPrice: 17.99
+        },
+        {
+          id: "egg-n-sausage-slice-halal",
+          name: "Egg N Sausage Slice (Halal)",
+          description: "Scrambled eggs and halal sausage crumbles over creamy cheddar sauce.",
+          image: "/images/menu/one-more-slice/egg-sausage-slice.jpg",
+          price: 4.99,
+          pizzaPrice: 17.99
         },
         {
           id: "egg-n-bacon-slice",
           name: "Egg N Bacon Slice",
           description: "Scrambled eggs and crispy bacon over creamy cheddar cheese sauce.",
           image: "/images/menu/one-more-slice/egg-bacon-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49,
+          pizzaPrice: 19.99
         },
-      ],
+        {
+          id: "egg-n-bacon-slice-halal",
+          name: "Egg N Bacon Slice (Halal)",
+          description: "Scrambled eggs and crispy halal bacon over creamy cheddar sauce.",
+          image: "/images/menu/one-more-slice/egg-bacon-slice.jpg",
+          price: 4.49,
+          pizzaPrice: 19.99
+        }
+      ]
     },
     {
       id: "sweet-slices",
@@ -853,31 +848,25 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "caramel-apple-slice",
           name: "Caramel Apple Slice",
-          description: "Warm apple pie filling on cinnamon-sugar crust with cream cheese icing and caramel drizzle.",
+          description: "Warm apple filling topped with cream cheese icing and caramel.",
           image: "/images/menu/one-more-slice/caramel-apple-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.49
         },
         {
           id: "churro-supreme-slice",
           name: "Churro Supreme Slice",
-          description: "Caramelized cinnamon-sugar crust drizzled with cream cheese icing and caramel.",
+          description: "Caramelized cinnamon sugar crust with cream cheese icing and caramel.",
           image: "/images/menu/one-more-slice/churro-supreme-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.49
         },
         {
           id: "chocolate-bliss-slice",
           name: "Chocolate Bliss Slice",
-          description: "Warm chocolate hazelnut spread with toasted marshmallows, chocolate chips, and powdered sugar.",
+          description: "Chocolate hazelnut spread, toasted marshmallows, chocolate chips, and powdered sugar.",
           image: "/images/menu/one-more-slice/chocolate-bliss-slice.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
+          price: 3.49
+        }
+      ]
     },
     {
       id: "snacks-and-sides",
@@ -886,16 +875,15 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "cheesy-garlic-dippers",
           name: "Cheesy Garlic Dippers",
-          description: "Golden-baked cheesy garlic crust cut into 12 dippers, served with dipping sauce.",
+          description: "Twelve cheesy garlic dippers baked golden, served with dipping sauce.",
           image: "/images/menu/one-more-slice/cheesy-garlic-dippers.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
+          price: 3.99
+        }
+      ]
+    }
   ],
 
+  // Dog It Up content and portion prices follow the supplied eleven-item menu.
   dogitup: [
     {
       id: "signature-dogs",
@@ -904,59 +892,46 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "classic-american",
           name: "Classic American",
-          description: "100% All Beef Hot Dog, topped with Ketchup, Mustard and Relish.",
+          description: "All beef hot dog topped with ketchup, mustard, and relish.",
           image: "/images/menu/dog-it-up/classic-american.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.49
         },
         {
           id: "nashville-hot",
           name: "Nashville Hot",
-          description: "100% All Beef Hot Dog, topped with Nashville Hot Sauce, Warm Cheddar Sauce and Pickles.",
+          description: "Beef hot dog with Nashville hot sauce, cheddar, and pickles.",
           image: "/images/menu/dog-it-up/nashville-hot.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 3.99
         },
         {
           id: "kansas-city-smokehouse",
           name: "Kansas City Smokehouse",
-          description: "100% All Beef Hot Dog, topped with Nashville Hot Sauce, Bacon, and Warm Cheddar Sauce.",
+          description: "Beef hot dog with Nashville sauce, cheddar, bacon, and pickles.",
           image: "/images/menu/dog-it-up/kansas-city-smokehouse.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49
         },
         {
           id: "midwest-mac-daddy",
           name: "Midwest Mac Daddy",
-          description: "100% All Beef Hot Dog, topped with creamy Mac & Cheese, Warm Cheddar Sauce and Bacon.",
+          description: "Beef hot dog with mac and cheese, cheddar, and bacon.",
           image: "/images/menu/dog-it-up/midwest-mac-daddy.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.99
         },
         {
           id: "texas-chili-cheese",
           name: "Texas Chili Cheese",
-          description: "100% All Beef Hot Dog, topped with No Bean Chili, Warm Cheddar Sauce and diced onions.",
+          description: "Beef hot dog with chili, cheddar sauce, and diced onions.",
           image: "/images/menu/dog-it-up/texas-chili-cheese.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 4.49
         },
         {
           id: "chicago-dog",
           name: "Chicago Dog",
-          description:
-            "A Windy City Classic loaded with Mustard, Diced Onions, Pickles, Tomato, Sweet Relish, and a Sport Pepper for a Bright, Tangy Bite in Every Mouthful.",
+          description: "Mustard, onions, pickles, tomato, sweet relish, and spicy sport pepper.",
           image: "/images/menu/dog-it-up/chicago-dog.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
+          price: 4.49
+        }
+      ]
     },
     {
       id: "sides",
@@ -965,201 +940,269 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "crinkle-fries",
           name: "Crinkle Fries",
-          description: "Extra ridges, extra crunch.",
+          description: "Golden crinkle fries with extra ridges and irresistible crispy crunch.",
           image: "/images/menu/dog-it-up/crinkle-fries.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
+          price: 1.99,
+          sizeOptions: [
+            {
+              id: "regular",
+              label: "Regular",
+              price: 1.99
+            },
+            {
+              id: "large",
+              label: "Large",
+              price: 2.99
+            }
+          ]
         },
         {
           id: "onion-rings",
           name: "Onion Rings",
-          description: "Golden rings with a crunch.",
+          description: "Golden onion rings with a crispy coating and satisfying crunch.",
           image: "/images/menu/dog-it-up/onion-rings.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
-        },
-        {
-          id: "frings",
-          name: "Frings",
-          description: "Fries and rings ended the rivalry.",
-          image: "/images/menu/dog-it-up/frings.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
+          price: 1.99,
+          sizeOptions: [
+            {
+              id: "regular",
+              label: "Regular",
+              price: 1.99
+            },
+            {
+              id: "large",
+              label: "Large",
+              price: 2.99
+            }
+          ]
         },
         {
           id: "mac-n-cheese",
           name: "Mac N Cheese",
-          description: "Comfort food's greatest hit.",
+          description: "Creamy macaroni and cheese for a rich, comforting side dish.",
           image: "/images/menu/dog-it-up/mac-n-cheese.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 2.99,
+          sizeOptions: [
+            {
+              id: "regular",
+              label: "Regular",
+              price: 2.99
+            },
+            {
+              id: "large",
+              label: "Large",
+              price: 4.99
+            }
+          ]
+        },
+        {
+          id: "frings",
+          name: "Frings",
+          description: "Crispy fries and golden onion rings together in one serving.",
+          image: "/images/menu/dog-it-up/frings.jpg",
+          price: 2.99
         },
         {
           id: "loaded-chili-cheese-fries",
           name: "Loaded Chili Cheese Fries",
-          description: "Crispy fries topped with No Bean Chili, Warm Cheddar Sauce, Bacon and diced Onion.",
+          description: "Crispy fries with chili, cheddar sauce, bacon, and diced onions.",
           image: "/images/menu/dog-it-up/loaded-chili-cheese-fries.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
-    {
-      id: "beverages",
-      title: "Beverages",
-      items: [
-        {
-          id: "lemonade",
-          name: "Lemonade",
-          description: "Sunshine, squeezed and iced.",
-          image: "/images/menu/dog-it-up/lemonade.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
-        },
-        {
-          id: "strawberry-lemonade",
-          name: "Strawberry Lemonade",
-          description: "Lemonade's summer crush.",
-          image: "/images/menu/dog-it-up/strawberry-lemonade.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
-        },
-        {
-          id: "cola-fizz",
-          name: "Cola-Fizz",
-          description: "Ice cold, endlessly fizzy.",
-          image: "/images/menu/dog-it-up/cola-fizz.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "orange-fizz",
-          name: "Orange Fizz",
-          description: "Bold, bubbly and bright orange.",
-          image: "/images/menu/dog-it-up/orange-fizz.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "lemon-lime-fizz",
-          name: "Lemon-Lime Fizz",
-          description: "Crisp citrus, straight off the tap.",
-          image: "/images/menu/dog-it-up/lemon-lime-fizz.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "Regular | Large",
-        },
-        {
-          id: "bottled-water",
-          name: "Bottled Water",
-          description: "Pure, chilled, zero fuss.",
-          image: "/images/menu/dog-it-up/bottled-water.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-          sizeLabel: "500ml",
-        },
-      ],
-    },
+          price: 4.99
+        }
+      ]
+    }
   ],
 
+  // Man vs Fries content and protein prices follow the supplied eleven-item menu.
   manvsfries: [
     {
-      id: "fries",
-      title: "Fries",
+      id: "loaded-fries",
+      title: "Loaded Fries",
       items: [
         {
-          id: "asada-fries",
-          name: "Asada Fries",
-          description:
-            "Sometimes, it's good to be bad. Take for example hella crisp, delicious french fries, drizzled with savory toppings beloved by everyone, everywhere.",
+          id: "norcal-asada-fries",
+          name: "NorCal Asada Fries",
+          description: "Crispy fries topped with Chicken/Steak and savory toppings worth craving.",
           image: "/images/menu/menvsfries/asada-fries.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 20.59,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 20.59
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 24.71
+            }
+          ]
         },
-      ],
+        {
+          id: "socal-asada-fries",
+          name: "SoCal Asada Fries",
+          description: "Crispy fries loaded with Chicken/Steak and savory toppings worth craving.",
+          image: "/images/menu/menvsfries/asada-fries.jpg",
+          price: 21.62,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 21.62
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 25.74
+            }
+          ]
+        },
+        {
+          id: "cbr-fries",
+          name: "CBR Fries",
+          description: "Crispy fries loaded with savory toppings for a satisfying crunch.",
+          image: "/images/menu/menvsfries/manvsfries-logo.png",
+          price: 22.65
+        }
+      ]
+    },
+    {
+      id: "crunch-wraps",
+      title: "Crunch Wraps",
+      items: [
+        {
+          id: "cali-crunch",
+          name: "Cali Crunch",
+          description: "Chicken/Steak, fries, cheese, guacamole, sour cream, and Flamin’ Hot Cheetos.",
+          image: "/images/menu/menvsfries/cali-crunch.jpg",
+          price: 16.44,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 16.44
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 20.56
+            }
+          ]
+        },
+        {
+          id: "flamin-cali-crunch",
+          name: "Flamin' Cali Crunch",
+          description: "Chicken/Steak, tostada, vegetables, cheese, guacamole, ranch, and Flamin’ Hot Cheetos.",
+          image: "/images/menu/menvsfries/cali-crunch.jpg",
+          price: 16.47,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 16.47
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 20.59
+            }
+          ]
+        }
+      ]
     },
     {
       id: "burritos",
       title: "Burritos",
       items: [
         {
-          id: "socal-burrito",
-          name: "SoCal Burrito",
-          description:
-            "Hella big flour tortilla, carne asada vs pollo asado, Cheetos® Flamin' Hot®, straight-cut fries, cheese, sour cream, guacamole, secret sauce, side of queso.",
-          image: "/images/menu/menvsfries/socal-burrito.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
           id: "norcal-burrito",
           name: "NorCal Burrito",
-          description:
-            "Hella big flour tortilla, carne asada vs pollo asado, straight-cut fries, cheese, sour cream, guacamole, secret sauce psst... yum.",
+          description: "Chicken/Steak, fries, cheese, guacamole, sour cream, and Flamin’ Hot Cheetos.",
           image: "/images/menu/menvsfries/norcal-burrito.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 20.59,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 20.59
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 24.71
+            }
+          ]
         },
         {
-          id: "cali-crunch",
-          name: "Cali Crunch",
-          description:
-            "Make yours lit add Cheetos® Flamin' Hot® chips! Hella big flour tortilla, carne asada vs pollo asado, crunchy tostada, lettuce, tomato, cheese, cilantro, onions, guacamole, spiked ranch.",
-          image: "/images/menu/menvsfries/cali-crunch.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          id: "socal-burrito",
+          name: "SoCal Burrito",
+          description: "Chicken/Steak, fries, cheese, sour cream, guacamole, and savory secret sauce.",
+          image: "/images/menu/menvsfries/socal-burrito.jpg",
+          price: 21.62,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 21.62
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 25.74
+            }
+          ]
         },
         {
           id: "cowgirl-burrito",
           name: "Cowgirl Burrito",
-          description:
-            "Y'all Sho'nuff ain't ready! Hella big flour tortilla, carne asada vs pollo asado, straight-cut fries, beer-battered onion rings, bacon, cheese, and smoky bbq sauce all wrapped up in a pretty package.",
+          description: "Meat, fries, onion rings, bacon, cheese, and smoky BBQ sauce.",
           image: "/images/menu/menvsfries/cowgirl-burrito.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "hella-dilla",
-          name: "Hella-Dilla",
-          description:
-            "Hella big flour tortilla, hella cheese, hella meat, hella fries, and hella sides (sour cream, guacamole, spiked ranch, queso) add Cheetos® Flamin' Hot® or Doritos® Flamin' Hot® chips.",
-          image: "/images/menu/menvsfries/hella-dilla.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
+          price: 21.62,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 21.62
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 25.74
+            }
+          ]
         },
         {
           id: "cbr-burrito",
           name: "CBR Burrito",
-          description:
-            "Chicken, Bacon, Ranch wrapped in a hella big flour tortilla, straight-cut fries, cheese, and guacamole... perfect.",
+          description: "Chicken, bacon, ranch, fries, cheese, and guacamole in flour tortilla.",
           image: "/images/menu/menvsfries/cbr-burrito.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
+          price: 21.62
+        }
+      ]
+    },
+    {
+      id: "quesadillas",
+      title: "Quesadillas",
+      items: [
+        {
+          id: "hella-dilla",
+          name: "Hella-Dilla",
+          description: "Chicken quesadilla with cheese, fries, sour cream, guacamole, and ranch.",
+          image: "/images/menu/menvsfries/hella-dilla.jpg",
+          price: 17.49,
+          sizeOptions: [
+            {
+              id: "chicken",
+              label: "Chicken",
+              price: 17.49
+            },
+            {
+              id: "steak",
+              label: "Steak",
+              price: 21.61
+            }
+          ]
+        }
+      ]
     },
     {
       id: "desserts",
@@ -1168,30 +1211,18 @@ const rawBrandMenus: Record<string, MenuSection[]> = {
         {
           id: "omg-cookies",
           name: "OMG Cookies",
-          description: "4 DOUBLE STUF OREO® cookies battered in krusteaz sweet cream mix, topped with powdered sugar, and a side of chocolate.",
+          description: "Four battered Oreo cookies with powdered sugar and rich chocolate.",
           image: "/images/menu/menvsfries/omg-cookies.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-        {
-          id: "man-vs-fried-cheesecake",
-          name: "Man vs Fried Cheesecake",
-          description:
-            "I mean #obvi rich and creamy NYC style cheesecake, graham cracker crust, battered in krusteaz sweet cream mix, topped with powder sugar, and a side of chocolate.",
-          image: "/images/menu/menvsfries/manvsfried-cheesecake.jpg",
-          price: 0,
-          rating: 4.8,
-          ratingCount: "10K+",
-        },
-      ],
-    },
+          price: 8.23
+        }
+      ]
+    }
   ],
 
 };
 
 const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
-  // Preserve the PDF prices, including its explicitly listed $0.00 buckets.
+  // Preserve the supplied menu prices, including its explicitly listed $0.00 buckets.
   "fry-chicks": {
     "fry-chicks-classic-breakfast-sandwich": 5.99,
     "fry-chicks-spicy-breakfast-sandwich": 5.99,
@@ -1199,6 +1230,16 @@ const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
     "fry-chicks-french-toast-bites": 4.49,
     "fry-chicks-hash-brown": 1.99,
     "fry-chicks-apple-juice": 1.99,
+    "fry-chicks-chicken-nuggets-6-pieces": 4.49,
+    "fry-chicks-chicken-nuggets-12-pieces": 5.99,
+    "fry-chicks-chicken-wings-6-pieces": 8.99,
+    "fry-chicks-chicken-wings-12-pieces": 17.49,
+    "fry-chicks-chicken-wings-18-pieces": 24.99,
+    "fry-chicks-1-tenders": 5.49,
+    "fry-chicks-2-tenders": 6.99,
+    "fry-chicks-3-tenders": 8.49,
+    "fry-chicks-4-tenders": 6.99,
+    "fry-chicks-5-tenders": 8.49,
     "fry-chicks-classic-chicken": 6.49,
     "fry-chicks-spicy-chicken": 6.49,
     "fry-chicks-chilli-chicken-crunch": 6.49,
@@ -1213,34 +1254,32 @@ const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
     "fry-chicks-42-bone-in": 5.99,
     "fry-chicks-18-pc-tenders": 0,
     "fry-chicks-26-pc-tenders": 5.99,
-    "fry-chicks-36-pc-nugget": 0,
-    "fry-chicks-chicken-nuggets-6-pieces": 3.99,
-    "fry-chicks-chicken-nuggets-9-pieces": 5.99,
-    "fry-chicks-chicken-wings-6-pieces": 8.49,
-    "fry-chicks-chicken-wings-12-pieces": 16.99,
-    "fry-chicks-chicken-wings-18-pieces": 24.99,
-    "fry-chicks-1-tenders": 2.49,
-    "fry-chicks-2-tenders": 4.99,
-    "fry-chicks-3-tenders": 6.49,
-    "fry-chicks-4-tenders": 8.99,
-    "fry-chicks-5-tenders": 10.99
+    "fry-chicks-36-pc-nugget": 0
   },
   oneslice: {
-    "cheese-slice": 2.92,
-    "pepperoni-slice": 3.5,
-    "sausage-slice": 3.5,
-    "meat-lover-slice": 4.33,
-    "bbq-chicken-slice": 10,
-    "buffalo-ranch-slice": 10,
+    "cheese-slice": 3.49,
+    "pepperoni-slice": 4.49,
+    "pepperoni-slice-halal": 4.49,
+    "sausage-slice": 4.49,
+    "sausage-slice-halal": 4.49,
+    "meat-lover-slice": 5.49,
+    "meat-lover-slice-halal": 5.49,
+    "bbq-chicken-slice": 4.49,
+    "bbq-chicken-slice-halal": 5.49,
+    "buffalo-ranch-slice": 4.49,
+    "buffalo-ranch-slice-halal": 5.49,
     "chicken-supreme-slice": 3.33,
-    "veggie-slice": 3.17,
-    "egg-cheese-slice": 2.5,
-    "egg-n-sausage-slice": 3,
-    "egg-n-bacon-slice": 3.33,
-    "caramel-apple-slice": 10,
-    "churro-supreme-slice": 10,
-    "chocolate-bliss-slice": 10,
-    "cheesy-garlic-dippers": 10,
+    "chicken-supreme-slice-halal": 4.49,
+    "veggie-slice": 5.49,
+    "egg-cheese-slice": 3.49,
+    "egg-n-sausage-slice": 3.99,
+    "egg-n-sausage-slice-halal": 4.99,
+    "egg-n-bacon-slice": 4.49,
+    "egg-n-bacon-slice-halal": 4.49,
+    "caramel-apple-slice": 3.49,
+    "churro-supreme-slice": 3.49,
+    "chocolate-bliss-slice": 3.49,
+    "cheesy-garlic-dippers": 3.99
   },
   mrbeast: {
     "beast-style-burger-combo": 9.99,
@@ -1260,63 +1299,47 @@ const APPROVED_MENU_PRICES: Record<string, Record<string, number>> = {
     "bottled-water": 10,
   },
   manvsfries: {
-    "asada-fries": 10,
-    "socal-burrito": 10,
-    "norcal-burrito": 10,
-    "cali-crunch": 10,
-    "cowgirl-burrito": 10,
-    "hella-dilla": 10,
-    "cbr-burrito": 10,
-    "omg-cookies": 10,
-    "man-vs-fried-cheesecake": 10,
+    "norcal-asada-fries": 20.59,
+    "socal-asada-fries": 21.62,
+    "cbr-fries": 22.65,
+    "cali-crunch": 16.44,
+    "flamin-cali-crunch": 16.47,
+    "norcal-burrito": 20.59,
+    "socal-burrito": 21.62,
+    "cowgirl-burrito": 21.62,
+    "cbr-burrito": 21.62,
+    "hella-dilla": 17.49,
+    "omg-cookies": 8.23
   },
   dogitup: {
     "classic-american": 3.49,
     "nashville-hot": 3.99,
-    "kansas-city-smokehouse": 4.29,
-    "midwest-mac-daddy": 4.29,
-    "texas-chili-cheese": 4.29,
-    "chicago-dog": 4.29,
+    "kansas-city-smokehouse": 4.49,
+    "midwest-mac-daddy": 4.99,
+    "texas-chili-cheese": 4.49,
+    "chicago-dog": 4.49,
     "crinkle-fries": 1.99,
-    "onion-rings": 2.49,
-    frings: 2.49,
-    "mac-n-cheese": 2.49,
-    "loaded-chili-cheese-fries": 3.99,
-    lemonade: 10,
-    "strawberry-lemonade": 10,
-    "cola-fizz": 10,
-    "orange-fizz": 10,
-    "lemon-lime-fizz": 10,
-    "bottled-water": 10,
+    "onion-rings": 1.99,
+    "mac-n-cheese": 2.99,
+    frings: 2.99,
+    "loaded-chili-cheese-fries": 4.99
   },
   cpk: {
-    "the-original-bbq-chicken-pizza": 10,
-    "wild-mushroom": 10,
-    "california-veggie": 10,
-    "the-works": 10,
-    "mushroom-pepperoni-sausage": 10,
-    "five-cheese-fresh-tomato": 10,
-    "neapolitan-burrata": 10,
-    pepperoni: 10,
-    hawaiian: 10,
-    margherita: 10,
-    sicilian: 10,
-    "spicy-chipotle-chicken-pizza": 10,
-    "tostada-pizza": 10,
-    "sicilian-2": 10,
+    "the-original-bbq-chicken-pizza": 19.69,
+    pepperoni: 19.69,
+    mupesa: 20.69,
+    "traditional-cheese": 18.69,
+    "wild-mushroom": 20.19,
+    margherita: 17.69,
+    hawaiian: 20.69,
+    "the-works": 20.69
   },
   cheesecake: {
-    "brownie-crunch-choc-a-lot-cheesecake": 5.99,
-    "original-cheesecake": 5.99,
-    "fresh-strawberry": 5.99,
-    "oreo-dream-extreme-cheesecake": 5.99,
-    "ultimate-red-velvet-cake-cheesecake": 5.99,
-    "reeses-peanut-butter-chocolate-cake-cheesecake": 5.99,
-    "godiva-chocolate-cheesecake": 5.99,
-    "peach-perfect-with-raspberry-drizzle": 5.99,
-    "coconut-cream-pie-cheesecake": 5.99,
-    "adams-peanut-butter-cup-fudge-ripple": 5.99,
-    "godiva-chocolate-cheesecake-2": 5.99,
+    "godiva-chocolate-cheesecake": 11.95,
+    "cheesecake-mousse-tuxedo": 11.95,
+    "bananas-foster-cheesecake": 11.95,
+    "fresh-strawberry": 11.95,
+    "original-cheesecake": 9.95
   },
 };
 

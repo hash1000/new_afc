@@ -5,6 +5,8 @@ export interface Brand {
   logoWidth?: number;
   logoHeight?: number;
   foodImage: string;
+  /** Complete banner artwork for the brand card on the food menu. */
+  cardImage?: string;
   category: string[];
   orderUrl: string;
   /** Full-bleed banner image for the brand menu page hero, replaces the default logo+foodImage layout when set. */
@@ -35,6 +37,7 @@ export interface Brand {
 export const brands: Brand[] = [
   {
     id: "empanadasunited",
+    cardImage: "/images/menu/empanadas/empanadas.png",
     name: "Empanadas United",
     logo: "/images/home/logo-empanadasunited.png",
     foodImage: "/images/home/logo-empanadasunited.png",
@@ -53,15 +56,19 @@ export const brands: Brand[] = [
   },
   {
     id: "wrapithabibi",
+    cardImage: "/images/menu/wrap-it-habibi/wrap-it-habibi.png",
     name: "Wrap it Habibi",
     logo: "/images/home/logo-wrap-it-habibi.png",
     foodImage: "/images/home/logo-wrap-it-habibi.png",
     category: [],
     orderUrl: "/food-menu/wrapithabibi",
-    comingSoon: true,
+    menuBanner: "/images/menu/wrap-it-habibi/wrap-it-habibi-banner.png",
+    menuBannerWidth: 1120,
+    menuBannerHeight: 202,
   },
   {
     id: "mrbeast",
+    cardImage: "/images/menu/mr-beast/mr-beast.png",
     name: "MrBeast Burger",
     logo: "/images/brands/mrbeast-logo.png",
     logoWidth: 256,
@@ -77,6 +84,7 @@ export const brands: Brand[] = [
   },
   {
     id: "cpk",
+    cardImage: "/images/menu/california-pizza/california-pizza.png",
     name: "California Pizza Kitchen",
     logo: "/images/brands/cpk-logo.png",
     logoWidth: 280,
@@ -92,6 +100,7 @@ export const brands: Brand[] = [
   },
   {
     id: "cheesecake",
+    cardImage: "/images/menu/chees-cake/chees-cake.png",
     name: "The Cheesecake Factory Bakery",
     logo: "/images/brands/cheesecake-logo.png",
     logoWidth: 244,
@@ -108,6 +117,7 @@ export const brands: Brand[] = [
   },
   {
     id: "fry-chicks",
+    cardImage: "/images/menu/fry-chicks/fry-chisk.png",
     name: "The Fry Chicks",
     logo: "/images/brands/fry-chicks-logo.png",
     logoWidth: 2869,
@@ -115,12 +125,13 @@ export const brands: Brand[] = [
     foodImage: "/images/menu/fry-chicks/og-chicken-sandwich.png",
     category: ["chicken", "chicken-sandwiches", "breakfast"],
     orderUrl: "/food-menu/fry-chicks",
-    menuHeroLogo: "/images/brands/fry-chicks-logo.png",
-    menuHeroImage: "/images/menu/fry-chicks/og-chicken-sandwich.png",
-    menuHeroColor: "#fff8ea",
+    menuBanner: "/images/menu/fry-chicks/fry-chicks-banner.png",
+    menuBannerWidth: 1120,
+    menuBannerHeight: 167,
   },
   {
     id: "oneslice",
+    cardImage: "/images/menu/one-more-slice/one-more-slice.png",
     name: "One More Slice Pizza",
     logo: "/images/menu/one-more-slice/one-more-slice-header-logo.png",
     logoWidth: 256,
@@ -136,6 +147,7 @@ export const brands: Brand[] = [
   },
   {
     id: "dogitup",
+    cardImage: "/images/menu/dog-it-up/dog-it-up.png",
     name: "Dog It Up",
     logo: "/images/brands/dogitup-logo.png",
     logoWidth: 200,
@@ -151,6 +163,7 @@ export const brands: Brand[] = [
   },
   {
     id: "manvsfries",
+    cardImage: "/images/menu/menvsfries/man-vsfries-logo.png",
     name: "Man vs Fries",
     logo: "/images/brands/manvsfries-logo.png",
     logoWidth: 204,
